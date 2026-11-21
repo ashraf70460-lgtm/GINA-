@@ -1,5 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="GINA 2026 asthma learning, bedside tools, patient follow-up and reports. Developed by Dr. Ashraf Ahmed.">
+<meta name="author" content="Dr. Ashraf Ahmed">
+<meta name="theme-color" content="#1F5FA8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon-512.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>GINA Asthma Mastery</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
@@ -53,7 +64,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* watermark */
 #wm{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;align-items:center;justify-items:center}
-#wm span{transform:rotate(-28deg);font-family:var(--f-display);font-weight:700;font-size:1.15rem;color:var(--wm);white-space:nowrap;user-select:none}
+#wm span{transform:rotate(-28deg);font-family:var(--f-display);font-weight:700;font-size:1.05rem;color:var(--wm);opacity:.75;white-space:nowrap;user-select:none}
 @media (max-width:700px){#wm{grid-template-columns:repeat(2,1fr);grid-auto-rows:120px}}
 
 /* header */
@@ -130,6 +141,7 @@ textarea{min-height:90px;resize:vertical}
 .scroll{overflow-x:auto;max-width:100%}
 .tbl{border-collapse:collapse;width:100%;font-size:.92rem;margin:.4rem 0}
 .tbl th,.tbl td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.body > table.tbl, .card > table.tbl{display:block;overflow-x:auto;max-width:100%}
 .tbl th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--surface2)}
 .tbl td.num,.tbl th.num{text-align:right;font-family:var(--f-mono)}
 .result{border-radius:12px;padding:14px 16px;border:1px solid var(--line);background:var(--surface2)}
@@ -241,6 +253,26 @@ li{margin:.18rem 0}
 .foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between}
 .archive-banner{background:var(--warn-bg);color:var(--warn);font-weight:700;border-radius:10px;padding:8px 12px;margin-bottom:14px}
 
+/* dashboard + reports */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,124px),1fr));gap:10px;margin-bottom:16px}
+.kpi{display:flex;flex-direction:column;gap:2px;padding:14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--primary);text-decoration:none;color:var(--ink)}
+.kpi:hover{box-shadow:var(--shadow)}
+.kpi.good{border-top-color:var(--good)}.kpi.warn{border-top-color:var(--warn)}.kpi.bad{border-top-color:var(--bad)}
+.kn{font-family:var(--f-display);font-size:2rem;font-weight:800;line-height:1}
+.kl{font-weight:700;font-size:.9rem}.ks{font-size:.78rem;color:var(--muted)}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px}
+.report-card{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.report-card .pwm{position:absolute;inset:0;pointer-events:none;display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:120px;place-items:center;overflow:hidden}
+.report-card .pwm span{transform:rotate(-24deg);font-family:var(--f-display);font-weight:800;color:var(--wm);font-size:1.3rem;white-space:nowrap}
+.report-card .zone h4{margin-top:0}
+.diagram{width:100%;min-width:640px;height:auto;display:block}
+.seg a{padding:7px 12px;font-weight:700;font-size:.88rem;color:var(--muted);text-decoration:none;display:inline-block}
+.seg a.on{background:var(--primary);color:var(--primary-ink)}
+.src{display:inline-flex;align-items:center;border-radius:999px;padding:2px 9px;font-size:.74rem;font-weight:700}
+.src.g{background:var(--info-bg);color:var(--primary)}.src.s{background:var(--warn-bg);color:var(--warn)}
+.wm-tag{font-family:var(--f-display);font-size:.78rem;font-weight:700;color:var(--muted);white-space:nowrap;opacity:.8}
+@media (max-width:640px){.wm-tag{display:none}}
+
 /* modal */
 .modal-bg{position:fixed;inset:0;z-index:80;background:rgba(10,16,28,.55);display:grid;place-items:center;padding:16px}
 .modal{max-width:560px;width:100%;background:var(--surface);border-radius:16px;padding:22px;box-shadow:var(--shadow);max-height:90vh;overflow:auto}
@@ -254,6 +286,8 @@ li{margin:.18rem 0}
 }
 </style>
 
+</head>
+<body>
 <div id="wm" aria-hidden="true"></div>
 
 <header class="top">
@@ -267,6 +301,7 @@ li{margin:.18rem 0}
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
       <input id="q" type="text" placeholder="Search topics, tools, doses…" aria-label="Search">
     </div>
+    <span class="wm-tag" title="Developer">Dr. Ashraf Ahmed</span>
     <button class="icon-btn" id="themeBtn" aria-label="Switch light or dark theme" title="Theme">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
     </button>
@@ -316,6 +351,14 @@ async function loadEdition(id){
   for(const f of ed.files){ const part=f.replace(/\.js$/,""); if(!have[part]) await loadScript(ed.folder+"/"+f); }
   return window.GINA.editions[id];
 }
+function mergeConsultant(E){
+  const C=E.consultant; if(!C||E._merged) return E;
+  const mods=E.meta.modules.concat(C.modules.filter(m=>!E.meta.modules.some(x=>x.id===m.id)));
+  E.meta.modules = C.order.map(id=>mods.find(m=>m.id===id)).filter(Boolean).concat(mods.filter(m=>!C.order.includes(m.id)));
+  C.topics.forEach(t=>{ if(!E.topics.some(x=>x.id===t.id)) E.topics.push(t); });
+  if(C.learning){ ["flashcards","mcqs"].forEach(k=>C.learning[k].forEach(x=>{ if(!E.learning[k].some(y=>y.id===x.id)) E.learning[k].push(x); })); }
+  E._merged=true; return E;
+}
 const edInfo = id => CFG.editions.find(e=>e.id===id);
 const isArchive = () => S.edId !== CFG.activeEdition;
 
@@ -357,15 +400,29 @@ const TOOLS = [
   { id:"bio", w:"biologics", name:"Biologic checker", d:"Eligibility pattern and predictors by class", m:"severe" },
   { id:"copd", w:"copdsyndrome", name:"Asthma vs COPD", d:"Syndromic approach to initial treatment", m:"copd" },
   { id:"psdx", w:"psdx", name:"Preschool diagnosis", d:"Three-criterion check, ≤5 years", m:"preschool" },
-  { id:"dx", w:"dxflow", name:"Diagnostic flowchart", d:"Step through Box 1-1", m:"diagnosis" }
+  { id:"dx", w:"dxflow", name:"Diagnostic flowchart", d:"Step through Box 1-1", m:"diagnosis" },
+  { id:"initial", w:"initialassess", name:"Initial consultation", d:"History, triggers, risk → summary report", m:"assessment" },
+  { id:"spiro", w:"spirointerp", name:"Spirometry interpreter", d:"Ratio, BDR (GINA vs ERS/ATS), persistent limitation", m:"diagnosis" },
+  { id:"pheno", w:"phenotype", name:"Phenotype assessment", d:"Type 2-high vs low, clinical phenotypes", m:"pathophys" },
+  { id:"ddx", w:"ddxexplorer", name:"Differential explorer", d:"16 differentials: clues, tests, how they differ", m:"diagnosis" },
+  { id:"inv", w:"invexplorer", name:"Investigations guide", d:"Indications, findings, effect on management", m:"investigations" },
+  { id:"device", w:"devicepicker", name:"Device selector", d:"Match inhaler to age, flow, coordination", m:"devices" },
+  { id:"tech", w:"techcheck", name:"Technique checklist", d:"Step-by-step check for 6 device types", m:"devices" },
+  { id:"severecl", w:"severechecklist", name:"Severe asthma checklist", d:"Structured clinic checklist with summary", m:"severe" },
+  { id:"biomono", w:"biomono", name:"Biologic monographs", d:"Mechanism, dosing, safety, evidence for 7 biologics", m:"biologics" },
+  { id:"bioresp", w:"bioresponse", name:"Biologic response", d:"Baseline vs now: continue, extend or switch", m:"biologics" },
+  { id:"addons", w:"addons", name:"Add-on treatments", d:"LAMA, LTRA, azithromycin, OCS, thermoplasty, emerging", m:"addons" },
+  { id:"ocsx", w:"ocsexposure", name:"OCS exposure", d:"Cumulative grams, converter, monitoring actions", m:"ocs" },
+  { id:"vent", w:"ventilation", name:"Ventilation helper", d:"PBW tidal volume, auto-PEEP, permissive hypercapnia", m:"exacerbations" },
+  { id:"comorb", w:"comorbid", name:"Comorbidity guide", d:"Effect on asthma, assessment, management", m:"special" }
 ];
 
 /* ================= navigation ================= */
 function nav(){
   const r = location.hash.slice(1) || "home";
   const top = r.startsWith("m-")||r.startsWith("t-")||r==="learn" ? "learn"
-    : r.startsWith("tool")? "tools" : r.startsWith("p")&&r!=="pram" ? "patients" : r.startsWith("study") ? "study" : r==="updates"||r==="search" ? r : "home";
-  const items = [["home","Home"],["learn","Learn"],["tools","Tools"],["patients","Patients"],["study","Study"]];
+    : r.startsWith("tool")? "tools" : (r.startsWith("p")||r.startsWith("r-")) ? "patients" : r.startsWith("study") ? "study" : r==="updates"||r==="search" ? r : "home";
+  const items = [["home","Dashboard"],["learn","Learn"],["tools","Tools"],["patients","Patients"],["study","Study"]];
   $("#tabbar").innerHTML = items.map(([k,l])=>`<a href="#${k}" class="${top===k?"on":""}">${ic(k)}<span>${l}</span></a>`).join("");
   const mods = S.E.meta.modules;
   const curMod = r.startsWith("m-") ? r.slice(2) : r.startsWith("t-") ? (S.E.topics.find(t=>t.id===r.slice(2))||{}).module : null;
@@ -442,7 +499,7 @@ V.topic = id => {
   const prev = list[i-1], next = list[i+1], done = !!prog.studied()[t.id];
   return shell(`<article style="--mc:var(--c-${m.color})">
   <div class="crumbs"><a href="#learn">Learn</a>›<a href="#m-${m.id}">${esc(m.title)}</a></div>
-  <div class="topic-head"><h1>${esc(t.title)}</h1><div class="row" style="margin-top:6px"><span class="ref">${esc(edInfo(S.edId).label)} · ${esc(t.ref)}</span></div></div>
+  <div class="topic-head"><h1>${esc(t.title)}</h1><div class="row" style="margin-top:6px">${(t.source||"GINA 2026")==="Supplementary"?`<span class="src s">Supplementary source</span>`:/\+/.test(t.source||"")?`<span class="src g">GINA 2026</span><span class="src s">+ supplementary</span>`:`<span class="src g">GINA 2026</span>`}<span class="ref">${esc(t.ref)}</span></div></div>
   <div class="stack">
     <div><div class="eyebrow">Summary</div><div class="summary">${esc(t.summary)}</div></div>
     ${t.keyPoints&&t.keyPoints.length?`<div><div class="eyebrow">Key points</div><ul class="kp">${t.keyPoints.map(k=>`<li>${esc(k)}</li>`).join("")}</ul></div>`:""}
@@ -947,6 +1004,324 @@ W.copdsyndrome = el => {
   el.addEventListener("change",calc); calc();
 };
 
+/* =====================================================================
+   CONSULTANT WIDGETS (v2)
+===================================================================== */
+const CD = () => (S.E.consultant && S.E.consultant.data) || {};
+const srcRef = r => `<p class="ref" style="margin-top:10px">${esc(r)}</p>`;
+function chkList(items, attr, cols){ return `<div class="grid ${cols||"g2"}" style="gap:6px">${items.map((it,i)=>`<label class="chk"><input type="checkbox" data-${attr}="${i}"><span>${esc(it)}</span></label>`).join("")}</div>`; }
+function syncChk(el){ $$(".chk",el).forEach(c=>{ const i=c.querySelector("input"); if(i) c.classList.toggle("on",i.checked); }); }
+function reportActions(id){ return `<div class="row noprint" style="margin-top:10px"><button class="btn sm" data-copy="${id}">Copy as text</button>${canPrint?`<button class="btn ghost sm" onclick="window.print()">Print / Save as PDF</button>`:""}</div>`; }
+document.addEventListener("click", e=>{ const b=e.target.closest("[data-copy]"); if(!b) return; const src=document.getElementById(b.dataset.copy); if(!src) return; const ta=document.createElement("textarea"); ta.value=src.innerText; document.body.appendChild(ta); copyText(ta.value, ta); setTimeout(()=>ta.remove(),2000); });
+
+/* ---- Initial consultation ---- */
+W.initialassess = el => {
+  const typical=["Episodic wheeze","Breathlessness","Chest tightness","Cough","Night-time symptoms or waking","Early-morning symptoms","Symptoms with exercise (worse after stopping)","Seasonal variation","Worse with viral infections","Personal atopy (eczema, rhinitis, food allergy)","Family history of asthma or atopy","Previous good response to asthma treatment"];
+  const atyp=["Chronic sputum production","Dizziness, light-headedness or tingling","Chest pain","Noisy inspiration / stridor","Localised or monophonic wheeze","Onset after 40 with ≥10 pack-years smoking","Crackles on examination"];
+  const triggers=[["Allergens (general)","Relate to history; test sensitisation (SPT/sIgE) before advising avoidance."],["House dust mite","Single avoidance measures have little benefit; HDM SLIT if sensitised, partly controlled, FEV1 >70% (adults/adolescents)."],["Pollen","On high-pollen days close windows, stay indoors, use air conditioning; short-term step-up via action plan in season."],["Animal dander","If sensitised and symptomatic, removing the pet can help; partial measures have little evidence."],["Mould / damp","Remediation of damp homes reduces symptoms in adults."],["Occupational agents","Confirm objectively (serial PEF at/away from work); remove from exposure early; refer."],["Smoking / vaping","Cessation support for patient and household; no smoking in rooms or cars."],["Air pollution","Avoid strenuous outdoor activity on high-pollution days; vent cooking/heating outdoors."],["Exercise","Do not avoid exercise; warm-up; ICS-formoterol before exercise; breakthrough EIB means poor control."],["Cold air","Cover nose and mouth; reliever before exposure if needed."],["Respiratory infections","Vaccinations (influenza, COVID-19, RSV, pneumococcal per local schedule); action plan step-up."],["NSAIDs / aspirin","Avoid if previous reaction; COX-2 inhibitors under supervision if AERD."],["Beta-blockers","Avoid non-selective; cardioselective case-by-case with specialist input."],["Gastro-oesophageal reflux","Treat if symptomatic; PPIs do not help asthma without reflux symptoms."],["Emotional / psychological","Screen anxiety and depression; breathing exercises; refer."]];
+  const risks=[["sev","≥1 severe exacerbation in past year",1],["icu","Ever intubated / ICU for asthma",1],["noics","Not on ICS, or inadequate ICS",0],["adh","Poor adherence",0],["tech","Incorrect inhaler technique",0],["smoke","Current smoking or vaping",0],["obes","Obesity",0],["crs","Chronic rhinosinusitis",0],["np","Nasal polyps",0],["food","Confirmed food allergy / anaphylaxis",1],["psy","Major psychosocial or socioeconomic problems",0],["preg","Pregnancy",0]];
+  el.innerHTML = `<div class="wh"><h3>Initial consultation</h3><div class="fgrid" style="max-width:340px"><div class="field"><label for="ia_id">Patient initials / ID</label><input id="ia_id" type="text" value="New patient"></div></div></div>
+  <h4>A · Symptoms and history (typical)</h4>${chkList(typical,"ty")}
+  <h4>Features that make asthma less likely</h4>${chkList(atyp,"at")}
+  <h4>B · Triggers</h4>${chkList(triggers.map(t=>t[0]),"tr","g3")}
+  <h4>C · Risk factors</h4><div class="grid g2" style="gap:6px">${risks.map(r=>`<label class="chk"><input type="checkbox" data-rk="${r[0]}"><span>${esc(r[1])}${r[2]?` <span class="pill bad">high</span>`:""}</span></label>`).join("")}</div>
+  <div class="fgrid" style="margin-top:10px">
+    <div class="field"><label for="ia_fev">FEV1 % predicted</label><input id="ia_fev" type="number" placeholder="e.g. 78"></div>
+    <div class="field"><label for="ia_saba">SABA canisters / year</label><input id="ia_saba" type="number" placeholder="e.g. 2"></div>
+    <div class="field"><label for="ia_ocs">OCS courses past year</label><input id="ia_ocs" type="number" placeholder="0"></div>
+    <div class="field"><label for="ia_eos">Blood eosinophils (/µL)</label><input id="ia_eos" type="number" placeholder="optional"></div>
+    <div class="field"><label for="ia_feno">FeNO (ppb)</label><input id="ia_feno" type="number" placeholder="optional"></div>
+  </div>
+  <div id="ia_out" style="margin-top:14px"></div>${srcRef("GINA 2026 · Box 1-2, Box 1-3, Box 2-2, Box 3-5, Box 3-6, Box 9-1")}`;
+  const calc=()=>{ syncChk(el);
+    const ty=$$("[data-ty]:checked",el).map(x=>typical[+x.dataset.ty]), at=$$("[data-at]:checked",el).map(x=>atyp[+x.dataset.at]);
+    const tr=$$("[data-tr]:checked",el).map(x=>triggers[+x.dataset.tr]), rk=$$("[data-rk]:checked",el).map(x=>risks.find(r=>r[0]===x.dataset.rk));
+    const v=id=>{const s=$("#"+id,el).value; return s===""?null:num(s);};
+    const fev=v("ia_fev"), saba=v("ia_saba"), ocs=v("ia_ocs"), eos=v("ia_eos"), feno=v("ia_feno");
+    const flags=rk.map(r=>r[1]);
+    if(fev!=null&&fev<60) flags.push("FEV1 <60% predicted");
+    if(saba!=null&&saba>=12) flags.push("SABA ≥1 canister/month (mortality risk)"); else if(saba!=null&&saba>=3) flags.push("SABA ≥3 canisters/year");
+    if(ocs!=null&&ocs>=1) flags.push(`${ocs} OCS course${ocs>1?"s":""} in past year`);
+    if(eos!=null&&eos>=300) flags.push("Raised blood eosinophils"); if(feno!=null&&feno>=50) flags.push("High FeNO");
+    const high = rk.some(r=>r[2]) || (fev!=null&&fev<60) || (saba!=null&&saba>=12) || (ocs!=null&&ocs>=2);
+    let dx, dxTone;
+    if(at.length>=2){ dx="Asthma less likely or another condition present — work through the differential (Box 1-3) and confirm variable airflow."; dxTone="warn"; }
+    else if(ty.length>=3){ dx="History typical of asthma — confirm variable expiratory airflow (spirometry with BDR or PEF) before starting ICS if possible."; dxTone="good"; }
+    else { dx="Insufficient typical features so far — complete the history and test lung function."; dxTone=""; }
+    const acts=["Confirm diagnosis with objective testing (Box 1-2) and document it.","Start or continue ICS-containing treatment; Track 1 (ICS-formoterol reliever) preferred for ≥12 years.","Written asthma action plan; check inhaler technique and adherence."];
+    if(high) acts.push("High-risk profile: flag in notes, early review (1–3 months), consider specialist referral.");
+    if(rk.some(r=>r[0]==="sev")||(ocs!=null&&ocs>=1)) acts.push("Exacerbation history: anti-inflammatory reliever; consider MART; refer if ≥1 severe exacerbation despite Step 4.");
+    if(rk.some(r=>r[0]==="smoke")) acts.push("Smoking/vaping cessation support.");
+    if(rk.some(r=>r[0]==="food")) acts.push("Anaphylaxis plan, epinephrine, allergy referral.");
+    $("#ia_out",el).innerHTML = `<div class="report-card" id="ia_rep"><div class="pwm" aria-hidden="true">${Array(6).fill(`<span>${AUTHOR}</span>`).join("")}</div>
+      <div class="plan-head"><div><div class="eyebrow">Initial consultation summary</div><h3>${esc($("#ia_id",el).value)}</h3></div><div class="muted" style="font-size:.85rem">${fmtDate(today())} · ${AUTHOR}</div></div>
+      <div class="zone"><h4>Diagnostic impression</h4><div class="result ${dxTone}" style="padding:10px 12px"><p>${esc(dx)}</p></div>
+        <p style="font-size:.9rem"><b>Typical features (${ty.length}):</b> ${esc(ty.join(", ")||"none recorded")}</p>${at.length?`<p style="font-size:.9rem"><b>Atypical features:</b> ${esc(at.join(", "))}</p>`:""}</div>
+      <div class="zone"><h4>Risk profile: <span class="pill ${high?"bad":flags.length?"warn":"good"}">${high?"High risk":flags.length?"Some risk factors":"No risk factors recorded"}</span></h4><ul>${flags.map(f=>`<li>${esc(f)}</li>`).join("")||"<li>None recorded</li>"}</ul></div>
+      ${tr.length?`<div class="zone"><h4>Trigger advice</h4><ul>${tr.map(t=>`<li><b>${esc(t[0])}:</b> ${esc(t[1])}</li>`).join("")}</ul></div>`:""}
+      <div class="zone"><h4>Plan</h4><ul>${acts.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>
+      <div class="plan-foot">Prepared by ${AUTHOR} · Based on ${esc(edInfo(S.edId).label)}</div></div>${reportActions("ia_rep")}`;
+  };
+  el.addEventListener("input",calc); el.addEventListener("change",calc); calc();
+};
+
+/* ---- Spirometry interpreter ---- */
+W.spirointerp = el => {
+  let age="adult";
+  el.innerHTML = `<div class="wh"><h3>Spirometry interpreter</h3>${seg("age",[["adult","Adult / adolescent"],["child","Child 6–11"]],age)}</div>
+  <div class="fgrid">
+    <div class="field"><label for="sp_f1">Pre-BD FEV1 (L)</label><input id="sp_f1" type="number" step="0.01" value="2.45"></div>
+    <div class="field"><label for="sp_fv">Pre-BD FVC (L)</label><input id="sp_fv" type="number" step="0.01" value="3.70"></div>
+    <div class="field"><label for="sp_f1p">Post-BD FEV1 (L)</label><input id="sp_f1p" type="number" step="0.01" value="2.84"></div>
+    <div class="field"><label for="sp_fvp">Post-BD FVC (L)</label><input id="sp_fvp" type="number" step="0.01" value="3.85"></div>
+    <div class="field"><label for="sp_pred">Predicted FEV1 (L)</label><input id="sp_pred" type="number" step="0.01" value="3.30"></div>
+    <div class="field"><label for="sp_lln">FEV1/FVC LLN (optional)</label><input id="sp_lln" type="number" step="0.01" placeholder="e.g. 0.70"></div>
+  </div><p class="muted" style="font-size:.84rem">Example values shown.</p><div id="sp_out" style="margin-top:10px"></div>
+  ${srcRef("GINA 2026 Box 1-2 · ERS/ATS 2022 interpretation (for comparison)")}`;
+  const calc=()=>{ const g=id=>num($("#"+id,el).value);
+    const f1=g("sp_f1"), fv=g("sp_fv"), f1p=g("sp_f1p"), fvp=g("sp_fvp"), pred=g("sp_pred"), lln=g("sp_lln"), o=$("#sp_out",el);
+    if(!f1||!fv){ o.innerHTML=`<div class="result">Enter pre-bronchodilator FEV1 and FVC.</div>`; return; }
+    const r=f1/fv, rp=(f1p&&fvp)?f1p/fvp:null, thr = lln || (age==="adult"?0.75:0.90);
+    const rows=[]; let obs = r<thr;
+    rows.push(["Pre-BD FEV1/FVC", r.toFixed(2), obs?`Below ${lln?"LLN":"GINA normal ("+thr+")"}: airflow limitation`:(age==="adult"&&!lln&&r<0.80?"Borderline (0.75–0.80)":"Normal")]);
+    if(pred) rows.push(["FEV1 % predicted", (100*f1/pred).toFixed(0)+"%", 100*f1/pred<60?"<60%: high exacerbation risk (GINA)":""]);
+    let bdr=null;
+    if(f1p){ const d=f1p-f1, pct=100*d/f1, dv=fvp?fvp-fv:0, pv=fvp?100*dv/fv:0;
+      if(age==="adult"){ const posF=pct>=12&&d*1000>=200, posV=fvp?(pv>=12&&dv*1000>=200):false; bdr=posF||posV;
+        rows.push(["FEV1 change", `${(d*1000).toFixed(0)} mL (${pct.toFixed(1)}%)`, posF?"Meets GINA BDR":""]);
+        if(fvp) rows.push(["FVC change", `${(dv*1000).toFixed(0)} mL (${pv.toFixed(1)}%)`, posV?"Meets GINA BDR (FVC)":""]);
+        if(pred) rows.push(["ERS/ATS 2022", `${(100*d/pred).toFixed(1)}% of predicted`, 100*d/pred>10?">10% predicted: positive by ERS/ATS (not used by GINA)":"Not >10% predicted"]); }
+      else { if(pred){ const pp=100*d/pred; bdr=pp>=12; rows.push(["FEV1 change", `${(d*1000).toFixed(0)} mL = ${pp.toFixed(1)}% predicted`, bdr?"Meets GINA BDR (≥12% predicted)":""]); } }
+    }
+    if(rp!=null) rows.push(["Post-BD FEV1/FVC", rp.toFixed(2), rp<0.70?"<0.70 after BD: persistent airflow limitation — consider asthma+COPD or long-standing asthma":""]);
+    const lowFVC = pred && fv && (100*f1/pred)<80 && !obs;
+    const sum = bdr ? ["good","Variable airflow demonstrated","Consistent with asthma in a patient with typical symptoms."] : obs ? ["warn","Airflow limitation without significant BDR","Does not exclude asthma: repeat during symptoms, after withholding bronchodilators, PEF variability or challenge; consider COPD."] : ["","No airflow limitation or BDR","Normal spirometry does not exclude asthma; test when symptomatic or use bronchial provocation."];
+    o.innerHTML=`<div class="result ${sum[0]}"><div class="big">${sum[1]}</div><p>${sum[2]}</p></div>
+    <table class="tbl" style="margin-top:10px">${rows.map(x=>`<tr><td><b>${x[0]}</b></td><td class="num">${x[1]}</td><td>${esc(x[2])}</td></tr>`).join("")}</table>
+    ${lowFVC?`<p class="callout">Low FEV1 with normal ratio: possible restriction or air trapping — measure TLC/RV.</p>`:""}`; };
+  bindSeg(el,"age",v=>{age=v;calc();}); el.addEventListener("input",calc); calc();
+};
+
+/* ---- Phenotype tool ---- */
+W.phenotype = el => {
+  el.innerHTML = `<div class="wh"><h3>Phenotype assessment</h3></div>
+  <div class="fgrid">
+    <div class="field"><label for="ph_ics">Current steroid treatment</label><select id="ph_ics"><option value="naive">No ICS</option><option value="med">Low/medium-dose ICS</option><option value="high" selected>High-dose ICS ± OCS</option></select></div>
+    <div class="field"><label for="ph_eos">Blood eosinophils (/µL)</label><input id="ph_eos" type="number" value="420"></div>
+    <div class="field"><label for="ph_feno">FeNO (ppb)</label><input id="ph_feno" type="number" value="35"></div>
+    <div class="field"><label for="ph_ige">Total IgE (IU/mL)</label><input id="ph_ige" type="number" value="160"></div>
+    <div class="field"><label for="ph_onset">Age at onset (years)</label><input id="ph_onset" type="number" value="38"></div>
+    <div class="field"><label for="ph_bmi">BMI</label><input id="ph_bmi" type="number" value="27"></div>
+    <div class="field"><label for="ph_pk">Smoking (pack-years)</label><input id="ph_pk" type="number" value="0"></div>
+    <div class="field"><label for="ph_se">Sputum eosinophils (%)</label><input id="ph_se" type="number" placeholder="optional"></div>
+    <div class="field"><label for="ph_sn">Sputum neutrophils (%)</label><input id="ph_sn" type="number" placeholder="optional"></div>
+  </div>
+  <div class="grid g3" style="gap:6px;margin-top:10px">${[["sens","Sensitised to aeroallergen",0],["allg","Symptoms clearly allergen-driven",0],["np","Nasal polyps / CRSwNP",1],["nsaid","Respiratory reaction to aspirin/NSAIDs",0],["ad","Atopic dermatitis",0],["occ","Occupational exposure",0]].map(([k,l,c])=>`<label class="chk ${c?"on":""}"><input type="checkbox" data-ph="${k}" ${c?"checked":""}><span>${esc(l)}</span></label>`).join("")}</div>
+  <p class="muted" style="font-size:.84rem">Example patient pre-filled.</p><div id="ph_out" style="margin-top:12px"></div>${srcRef("GINA 2026 Box 8-3, Appendix A · ERS/ATS severe asthma phenotyping")}`;
+  const calc=()=>{ syncChk(el); const g=id=>{const s=$("#"+id,el).value; return s===""?null:num(s);}, b=k=>el.querySelector(`[data-ph="${k}"]`).checked;
+    const ics=$("#ph_ics",el).value, eos=g("ph_eos"), feno=g("ph_feno"), ige=g("ph_ige"), onset=g("ph_onset"), bmi=g("ph_bmi"), pk=g("ph_pk"), se=g("ph_se"), sn=g("ph_sn");
+    const fenoThr = ics==="naive"?50: ics==="med"?25:20, eosThr = ics==="high"?150:300;
+    const t2=[]; if(eos!=null&&eos>=eosThr) t2.push(`eosinophils ${eos}/µL (≥${eosThr})`); if(feno!=null&&feno>=fenoThr) t2.push(`FeNO ${feno} ppb (≥${fenoThr} on ${ics==="naive"?"no ICS":ics==="med"?"medium ICS":"high-dose ICS"})`); if(se!=null&&se>=2) t2.push(`sputum eos ${se}%`); if(b("allg")) t2.push("allergen-driven");
+    const P=[];
+    if(b("sens")&&(onset!=null&&onset<18||b("allg"))) P.push(["Early-onset allergic (atopic) asthma","T2","Allergen measures, HDM SLIT if eligible; biologic options anti-IgE (needs IgE in range), anti-IL-4Rα, anti-TSLP."+(ige!=null?` Total IgE ${ige} IU/mL.`:"")]);
+    if(onset!=null&&onset>=18&&eos!=null&&eos>=300) P.push(["Late-onset eosinophilic asthma","T2","Often needs high-dose ICS; anti-IL-5/5R strongly predicted by eosinophils and exacerbations; anti-IL-4Rα; anti-TSLP."+(b("np")?" Polyps favour dupilumab, mepolizumab, omalizumab, tezepelumab.":"")]);
+    if(b("nsaid")&&b("np")) P.push(["Aspirin-exacerbated respiratory disease (AERD)","T2","Avoid COX-1 inhibitors; LTRA; aspirin desensitisation after sinus surgery; biologics for polyps and asthma."]);
+    else if(b("np")) P.push(["Asthma with CRSwNP","T2","Biologic with dual indication; ENT co-management."]);
+    if(!t2.length){
+      if(sn!=null&&sn>=61) P.push(["Neutrophilic asthma","T2-low","Exclude infection/bronchiectasis, smoking, occupational exposure; azithromycin; LAMA; anti-TSLP; avoid escalating ICS without objective benefit."]);
+      else if(se!=null&&se<2&&sn!=null&&sn<61) P.push(["Paucigranulocytic asthma","T2-low","Review diagnosis and dysfunctional breathing; bronchodilators (LAMA); limited ICS escalation benefit."]);
+      if(bmi!=null&&bmi>=30) P.push(["Obesity-associated asthma","T2-low","Weight loss (5–10%), exercise, bariatric surgery; screen OSA and GERD."]);
+      if(pk!=null&&pk>=10) P.push(["Smoking-associated asthma","T2-low","Cessation; reduced ICS response; consider asthma+COPD (Box 7-2)."]);
+      if(b("occ")) P.push(["Possible occupational asthma","—","Serial PEF at/away from work; early removal from exposure."]);
+      if(!P.length) P.push(["Type 2-low / not yet phenotyped","T2-low",`Repeat eosinophils and FeNO up to 3 times on the lowest OCS dose before concluding (GINA). Options if confirmed: LAMA, azithromycin, anti-TSLP${ics==="high"?", anti-IL-4Rα if on maintenance OCS":""}.`]);
+    } else {
+      if(bmi!=null&&bmi>=30) P.push(["Obesity as additional modifier","—","Weight management improves control; low FeNO in obesity can mislead."]);
+      if(b("ad")) P.push(["Atopic dermatitis comorbidity","T2","Favours dupilumab if a biologic is chosen."]);
+    }
+    if(eos!=null&&eos>=1500) P.unshift(["Marked eosinophilia ≥1500/µL","Alert","Consider EGPA, HES, parasites, ABPA; check ANCA, organ involvement; avoid dupilumab."]);
+    $("#ph_out",el).innerHTML=`<div class="result ${t2.length?"good":"warn"}"><div class="big">${t2.length?"Type 2-high":"Type 2 not shown"}</div><p>${t2.length?esc(t2.join(" · ")):"No Type 2 marker above threshold for the current treatment."}</p></div>
+    <div class="grid g2" style="margin-top:10px">${P.map(p=>`<div class="card"><div class="row sp"><b style="font-family:var(--f-display)">${esc(p[0])}</b><span class="pill ${p[1]==="T2"?"good":p[1]==="Alert"?"bad":p[1]==="T2-low"?"warn":""}">${esc(p[1])}</span></div><p style="font-size:.92rem">${esc(p[2])}</p></div>`).join("")}</div>`; };
+  el.addEventListener("input",calc); el.addEventListener("change",calc); calc();
+};
+
+/* ---- Differential / investigations / comorbidity explorers ---- */
+function explorer(el, title, rows, cols, keys, ref){
+  el.innerHTML=`<div class="wh"><h3>${esc(title)}</h3><input type="text" data-flt placeholder="Filter…" aria-label="Filter" style="max-width:240px"></div>
+  <div class="scroll"><table class="tbl"><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead><tbody data-body></tbody></table></div>${srcRef(ref)}`;
+  const draw=()=>{ const q=el.querySelector("[data-flt]").value.toLowerCase();
+    el.querySelector("[data-body]").innerHTML = rows.filter(r=>!q||keys.map(k=>r[k]).join(" ").toLowerCase().includes(q)).map(r=>`<tr>${keys.map((k,i)=>`<td>${i===0?`<b>${esc(r[k])}</b>`:esc(r[k])}</td>`).join("")}</tr>`).join("") || `<tr><td colspan="${cols.length}" class="muted">No match.</td></tr>`; };
+  el.querySelector("[data-flt]").addEventListener("input",draw); draw();
+}
+W.ddxexplorer = el => explorer(el,"Differential diagnosis",CD().ddx.map(d=>({...d,co:d.coexist?"Often":"Less often"})),["Condition","Clinical clues","Key investigations","How it differs","Coexists with asthma"],["name","clues","tests","differs","co"],"GINA 2026 Box 1-3 · supplementary specialist sources");
+W.invexplorer = el => explorer(el,"Investigations",CD().investigations,["Test","Indications","Findings","Interpretation","Effect on management"],["name","when","find","meaning","act"],"GINA 2026 Box 8-2 Stage 5 · supplementary sources");
+W.comorbid = el => explorer(el,"Comorbidities",CD().comorbid,["Condition","Effect on asthma","Assessment","Management"],["name","effect","assess","manage"],"GINA 2026 Section 6, 8 · supplementary sources");
+W.addons = el => {
+  const A=CD().addons;
+  el.innerHTML=`<div class="wh"><h3>Add-on and advanced treatments</h3><div class="row"><span class="pill good">Established</span><span class="pill warn">Specialist / last resort</span><span class="pill">Emerging (not approved)</span></div></div>
+  <div class="grid g2">${A.map(a=>{ const t=/Emerging/.test(a.status)?"":/Last|registry|Not rec|rarely/i.test(a.status)?"warn":"good"; return `<div class="card"><div class="row sp"><b style="font-family:var(--f-display)">${esc(a.name)}</b><span class="pill ${t}">${esc(a.status)}</span></div>
+  <table class="tbl" style="font-size:.86rem">${[["Indication",a.indication],["Evidence",a.evidence],["Dosing",a.dose],["Safety",a.safety],["Monitoring",a.monitor],["Limitations",a.limits]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${esc(r[1])}</td></tr>`).join("")}</table></div>`; }).join("")}</div>${srcRef("GINA 2026 p.97–100, Box 8-3 · product labels")}`;
+};
+
+/* ---- Devices ---- */
+W.devicepicker = el => {
+  el.innerHTML=`<div class="wh"><h3>Device selector</h3></div><div class="fgrid">
+    <div class="field"><label for="dp_age">Age (years)</label><input id="dp_age" type="number" value="68"></div>
+    <div class="field"><label for="dp_flow">Strong, fast inhalation possible?</label><select id="dp_flow"><option value="yes">Yes</option><option value="no">No / low flow</option><option value="unk">Not tested</option></select></div>
+    <div class="field"><label for="dp_coord">Hand–breath coordination</label><select id="dp_coord"><option value="good">Good</option><option value="poor" selected>Poor</option></select></div>
+    <div class="field"><label for="dp_dex">Cognition / dexterity</label><select id="dp_dex"><option value="ok">Adequate</option><option value="poor" selected>Impaired (arthritis, tremor, cognitive)</option></select></div>
+    <div class="field"><label for="dp_acute">Setting</label><select id="dp_acute"><option value="stable">Stable / maintenance</option><option value="acute">Acute exacerbation</option></select></div></div>
+  <p class="muted" style="font-size:.84rem">Example: an older adult with arthritis.</p><div id="dp_out" style="margin-top:10px"></div>${srcRef("GINA 2026 Box 5-1 · ERS/ISAM aerosol guidance")}`;
+  const calc=()=>{ const age=num($("#dp_age",el).value)||0, flow=$("#dp_flow",el).value, coord=$("#dp_coord",el).value, dex=$("#dp_dex",el).value, ac=$("#dp_acute",el).value;
+    const rec=[], avoid=[];
+    if(ac==="acute"){ rec.push(["pMDI + spacer","First choice in acute asthma at all ages; tidal breathing 5–6 breaths per puff."]); rec.push(["Nebuliser","If unable to use spacer or needing oxygen-driven delivery; not more effective."]); }
+    else if(age<4){ rec.push(["pMDI + valved spacer with face mask","Preferred under ~4 years."]); avoid.push("DPI (insufficient flow)"); }
+    else if(age<6){ rec.push(["pMDI + spacer with mouthpiece","Use mask only if unable to seal lips."]); avoid.push("DPI (unreliable flow)"); }
+    else {
+      if(flow==="yes") rec.push(["Dry powder inhaler","Suits patients with adequate inspiratory flow; no coordination needed."+(dex==="poor"?" Check they can load the dose.":"")]);
+      if(coord==="good"&&dex==="ok") rec.push(["pMDI (with spacer for ICS)","Slow deep inhalation; spacer improves deposition."]);
+      if(coord==="poor") { rec.push(["pMDI + spacer","Removes the need for coordination."]); rec.push(["Breath-actuated pMDI","Fires on inhalation; needs moderate flow."]); }
+      rec.push(["Soft mist inhaler","Slow aerosol; needs dexterity to load the cartridge."+(dex==="poor"?" Carer may load it.":"")]);
+      if(flow==="no") avoid.push("DPI (low inspiratory flow)");
+      if(flow==="unk") rec.push(["Measure inspiratory flow","An inspiratory flow meter set to the device resistance helps choose between DPI and pMDI."]);
+      if(dex==="poor") rec.push(["Simplify","One device type for all inhaled medicines; involve a carer; consider a nebuliser only if no handheld device can be used."]);
+    }
+    $("#dp_out",el).innerHTML=`<div class="grid g2">${rec.map((r,i)=>`<div class="result ${i===0?"good":""}"><div class="eyebrow">${i===0?"First choice":"Option"}</div><b>${esc(r[0])}</b><p style="font-size:.9rem">${esc(r[1])}</p></div>`).join("")}</div>
+    ${avoid.length?`<div class="callout warn"><b>Avoid:</b> ${esc(avoid.join("; "))}</div>`:""}
+    <p class="muted" style="font-size:.86rem">For Track 1, check which ICS-formoterol devices are available locally (DPI and pMDI formulations exist).</p>`; };
+  el.addEventListener("input",calc); el.addEventListener("change",calc); calc();
+};
+W.techcheck = el => {
+  const D=CD().devices; let cur=D[0].id;
+  const draw=()=>{ const d=D.find(x=>x.id===cur);
+    el.innerHTML=`<div class="wh"><h3>Technique checklist</h3><select data-dev aria-label="Device" style="max-width:280px">${D.map(x=>`<option value="${x.id}" ${x.id===cur?"selected":""}>${esc(x.name)}</option>`).join("")}</select></div>
+    <p class="muted" style="font-size:.88rem">Ask the patient to show you. Tick each step done correctly.</p>
+    <div class="stack" style="gap:6px">${d.steps.map((s,i)=>`<label class="chk"><input type="checkbox" data-st="${i}"><span><b>${i+1}.</b> ${esc(s)}</span></label>`).join("")}</div>
+    <div data-score style="margin-top:10px"></div>
+    <h4>Common errors</h4><ul>${d.errors.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>${srcRef("GINA 2026 Box 5-2 · device instructions")}`;
+    el.querySelector("[data-dev]").onchange=e=>{cur=e.target.value;draw();};
+    score(); };
+  const score=()=>{ syncChk(el); const n=$$("[data-st]",el).length, k=$$("[data-st]:checked",el).length, miss=$$("[data-st]:not(:checked)",el).map(x=>+x.dataset.st+1);
+    el.querySelector("[data-score]").innerHTML=`<div class="result ${k===n?"good":k>=n-2?"warn":"bad"}"><div class="big num">${k}/${n} steps correct</div><p>${k===n?"Correct technique. Recheck at every visit.":`Steps to correct: ${miss.join(", ")}. Demonstrate physically, repeat 2–3 times, recheck in 4–6 weeks.`}</p></div>`; };
+  el.addEventListener("change",e=>{ if(e.target.matches("[data-st]")) score(); }); draw();
+};
+
+/* ---- Severe asthma checklist ---- */
+W.severechecklist = el => {
+  const G=CD().severeChecklist, saved=store.get("sevcl",{});
+  el.innerHTML=`<div class="wh"><h3>Severe asthma clinic checklist</h3><div class="row"><button class="btn ghost sm" data-clr>Clear</button></div></div><div data-prog></div>
+  <div class="grid g2">${G.map((g,gi)=>`<div class="card"><div class="eyebrow">${esc(g.g)}</div><div class="stack" style="gap:5px;margin-top:6px">${g.items.map((it,ii)=>{const k=gi+"_"+ii;return `<label class="chk ${saved[k]?"on":""}"><input type="checkbox" data-sc="${k}" ${saved[k]?"checked":""}><span>${esc(it)}</span></label>`;}).join("")}</div></div>`).join("")}</div>
+  <div id="sc_rep" style="margin-top:12px"></div>${reportActions("sc_rep")}${srcRef("GINA 2026 Box 8-2 to 8-5")}`;
+  const upd=()=>{ syncChk(el); const all=$$("[data-sc]",el), done=all.filter(x=>x.checked), s={}; done.forEach(x=>s[x.dataset.sc]=1); store.set("sevcl",s);
+    el.querySelector("[data-prog]").innerHTML=`<div class="bar" style="height:10px;margin-bottom:12px"><i style="width:${100*done.length/all.length}%"></i></div><p class="muted">${done.length} of ${all.length} items complete</p>`;
+    const pending=G.map((g,gi)=>[g.g,g.items.filter((_,ii)=>!s[gi+"_"+ii])]).filter(x=>x[1].length);
+    $("#sc_rep",el).innerHTML=`<div class="card"><b>Outstanding items</b>${pending.map(p=>`<p style="font-size:.9rem;margin:.3rem 0"><b>${esc(p[0])}:</b> ${esc(p[1].join("; "))}</p>`).join("")||"<p>All items complete.</p>"}<p class="muted" style="font-size:.8rem">Checklist by ${AUTHOR} · ${esc(edInfo(S.edId).label)}</p></div>`; };
+  el.addEventListener("change",upd); el.querySelector("[data-clr]").onclick=()=>{ $$("[data-sc]",el).forEach(x=>x.checked=false); upd(); }; upd();
+};
+
+/* ---- Biologic monographs ---- */
+W.biomono = el => {
+  const B=CD().biologics; let cur=0;
+  const draw=()=>{ const b=B[cur];
+    el.innerHTML=`<div class="wh"><h3>Biologic monographs</h3></div>
+    <div class="seg" style="margin-bottom:12px">${B.map((x,i)=>`<button type="button" data-bi="${i}" class="${i===cur?"on":""}">${esc(x.name)}</button>`).join("")}</div>
+    <div class="card"><div class="row sp"><h3>${esc(b.name)}</h3><span class="pill">${esc(b.cls)}</span></div>
+    <table class="tbl" style="margin-top:8px">${[["Mechanism",b.mech],["Approved indications",b.indications],["Age",b.age],["Eligibility",b.eligibility],["Blood eosinophils",b.eos],["FeNO",b.feno],["IgE",b.ige],["Dosing",b.dose],["Administration",b.admin],["Contraindications & precautions",b.caution],["Adverse effects",b.ae],["Monitoring",b.monitor],["Trial evidence",b.evidence],["Response & stopping",b.stop]].map(r=>`<tr><td style="width:30%"><b>${r[0]}</b></td><td>${esc(r[1])}</td></tr>`).join("")}</table></div>
+    <h4>Side-by-side</h4><div class="scroll"><table class="tbl"><thead><tr><th>Drug</th><th>Class</th><th>Age</th><th>Eosinophils</th><th>FeNO</th><th>Dose</th></tr></thead><tbody>${B.map(x=>`<tr><td><b>${esc(x.name)}</b></td><td>${esc(x.cls)}</td><td>${esc(x.age)}</td><td>${esc(x.eos)}</td><td>${esc(x.feno)}</td><td>${esc(x.dose)}</td></tr>`).join("")}</tbody></table></div>
+    <div class="callout warn">GINA recommendation, regulatory approval, local formulary and payer criteria can differ. Ages and indications vary between countries: check local labelling.</div>${srcRef("GINA 2026 p.162–168, Box 8-4, Box 8-6 · product labels")}`; };
+  el.addEventListener("click",e=>{ const b=e.target.closest("[data-bi]"); if(b){ cur=+b.dataset.bi; draw(); } }); draw();
+};
+
+/* ---- Biologic response ---- */
+W.bioresponse = el => {
+  const F=[["ex","Severe exacerbations / year",3,1],["ocs","Maintenance OCS (mg/day prednisolone)",10,2.5],["act","ACT (5–25)",13,19],["acq","ACQ-5 (0–6)",2.6,1.4],["fev","FEV1 (L)",1.85,2.10],["aqlq","AQLQ (1–7)",4.1,5.0],["eos","Blood eosinophils (/µL)",620,40],["feno","FeNO (ppb)",42,30]];
+  el.innerHTML=`<div class="wh"><h3>Biologic response assessment</h3><div class="field" style="max-width:220px"><label for="br_m">Months on biologic</label><input id="br_m" type="number" value="6"></div></div>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Measure</th><th>Baseline</th><th>Now</th><th>Change</th></tr></thead><tbody>${F.map(f=>`<tr><td>${f[1]}</td><td><input type="number" step="any" id="br_b_${f[0]}" value="${f[2]}" aria-label="${f[1]} baseline"></td><td><input type="number" step="any" id="br_n_${f[0]}" value="${f[3]}" aria-label="${f[1]} now"></td><td class="num" data-d="${f[0]}"></td></tr>`).join("")}</tbody></table></div>
+  <p class="muted" style="font-size:.84rem">Example values shown. Use annualised exacerbation rates.</p><div id="br_out" style="margin-top:10px"></div>${srcRef("GINA 2026 Box 8-5 · pragmatic response thresholds")}`;
+  const calc=()=>{ const g=(p,k)=>{const s=$(`#br_${p}_${k}`,el).value; return s===""?null:num(s);}; const m=num($("#br_m",el).value)||0;
+    const D={}; F.forEach(f=>{ const b=g("b",f[0]), n=g("n",f[0]); D[f[0]]={b,n,d:(b!=null&&n!=null)?n-b:null}; el.querySelector(`[data-d="${f[0]}"]`).textContent = D[f[0]].d==null?"—":(D[f[0]].d>0?"+":"")+(+D[f[0]].d.toFixed(2)); });
+    const wins=[], notes=[];
+    const pct=(o)=>o.b?100*(o.b-o.n)/o.b:null;
+    const exr=pct(D.ex), ocr=pct(D.ocs);
+    if(exr!=null&&exr>=50) wins.push(`Exacerbations ↓ ${exr.toFixed(0)}%`); else if(exr!=null) notes.push(`Exacerbations ↓ ${exr.toFixed(0)}% (<50%)`);
+    if(D.ocs.b>0){ if(ocr>=50) wins.push(`OCS ↓ ${ocr.toFixed(0)}%`); else notes.push(`OCS ↓ ${(ocr||0).toFixed(0)}% (<50%)`); }
+    if(D.act.d!=null&&D.act.d>=3) wins.push(`ACT +${D.act.d}`); if(D.acq.d!=null&&D.acq.d<=-0.5) wins.push(`ACQ ${D.acq.d.toFixed(1)}`); if(D.aqlq.d!=null&&D.aqlq.d>=0.5) wins.push(`AQLQ +${D.aqlq.d.toFixed(1)}`); if(D.fev.d!=null&&D.fev.d>=0.1) wins.push(`FEV1 +${Math.round(D.fev.d*1000)} mL`);
+    const major = (exr!=null&&exr>=50) || (D.ocs.b>0&&ocr>=50);
+    const tooEarly = m<4;
+    let v; if(tooEarly) v=["warn","Too early to judge","Review at 3–4 months (6 for depemokimab); trial at least 4 months."];
+    else if(major&&wins.length>=3) v=["good","Good response","Reduce OCS first (adrenal check), then other add-ons, then ICS-LABA after 3–6 months stable. Never stop ICS. Continue biologic; review every 3–6 months."];
+    else if(major||wins.length>=2) v=["warn","Partial / unclear response","Extend trial to 6–12 months; recheck adherence, technique, comorbidities; consider switching class if still unclear."];
+    else v=["bad","No meaningful response","Stop the biologic; review the basics and phenotype (HRCT, sputum); consider a different class."];
+    $("#br_out",el).innerHTML=`<div class="result ${v[0]}"><div class="big">${v[1]}</div><p>${esc(v[2])}</p><p style="font-size:.9rem"><b>Improvements:</b> ${esc(wins.join(" · ")||"none at threshold")}${notes.length?`<br><b>Other:</b> ${esc(notes.join(" · "))}`:""}</p></div>`; };
+  el.addEventListener("input",calc); calc();
+};
+
+/* ---- OCS exposure ---- */
+W.ocsexposure = el => {
+  const eq={pred:1, pnis:1, mp:1.25, dex:6.67, hc:0.25};
+  el.innerHTML=`<div class="wh"><h3>Oral corticosteroid exposure</h3></div>
+  <div class="fgrid">
+    <div class="field"><label for="ox_n">Short courses, last 12 months</label><input id="ox_n" type="number" value="3"></div>
+    <div class="field"><label for="ox_d">Dose per course (mg/day)</label><input id="ox_d" type="number" value="40"></div>
+    <div class="field"><label for="ox_days">Days per course</label><input id="ox_days" type="number" value="5"></div>
+    <div class="field"><label for="ox_m">Maintenance OCS (mg/day)</label><input id="ox_m" type="number" value="5"></div>
+    <div class="field"><label for="ox_mm">Months on maintenance (last 12)</label><input id="ox_mm" type="number" value="6"></div>
+    <div class="field"><label for="ox_life">Lifetime short courses (approx.)</label><input id="ox_life" type="number" value="8"></div>
+  </div>
+  <h4>Steroid converter</h4><div class="fgrid"><div class="field"><label for="ox_drug">Drug</label><select id="ox_drug"><option value="pred">Prednisolone</option><option value="pnis">Prednisone</option><option value="mp">Methylprednisolone</option><option value="dex">Dexamethasone</option><option value="hc">Hydrocortisone</option></select></div><div class="field"><label for="ox_dose">Dose (mg)</label><input id="ox_dose" type="number" value="8"></div><div class="field"><label>Prednisolone-equivalent</label><div data-eq class="mono" style="padding:8px 0;font-weight:700"></div></div></div>
+  <p class="muted" style="font-size:.84rem">Example values shown.</p><div id="ox_out" style="margin-top:10px"></div>${srcRef("GINA 2026 Box 9-3, p.176–177 · observational cumulative-exposure data")}`;
+  const calc=()=>{ const g=id=>num($("#"+id,el).value)||0;
+    $("[data-eq]",el).textContent = (g("ox_dose")*eq[$("#ox_drug",el).value]).toFixed(1)+" mg";
+    const courses=g("ox_n")*g("ox_d")*g("ox_days"), maint=g("ox_m")*g("ox_mm")*30.4, tot=(courses+maint)/1000;
+    const band = tot>=1?["bad","High exposure (≥1 g in 12 months)"]: tot>=0.5?["warn","Increased exposure (0.5–1 g)"]:["good","Lower exposure (<0.5 g)"];
+    const acts=["Treat each OCS course as a red flag: review diagnosis, adherence, technique, comorbidities and treatment step.","Switch to ICS-formoterol MART/AIR if not already."];
+    if(g("ox_n")>=2||g("ox_m")>0) acts.push("Refer to severe asthma service; assess for Type 2 biologic.");
+    if(g("ox_m")>0) acts.push("Bone protection (DEXA, calcium/vitamin D, consider bisphosphonate), HbA1c, BP, eye check; taper when controlled; morning cortisol near 5 mg/day; steroid emergency card.");
+    if(g("ox_life")>=4) acts.push("Lifetime ≥4–5 courses: increased risk of diabetes, cataract, heart failure, osteoporosis (GINA). Screen accordingly.");
+    $("#ox_out",el).innerHTML=`<div class="grid g2"><div class="result ${band[0]}"><div class="eyebrow">Last 12 months</div><div class="big num">${tot.toFixed(2)} g</div><p>${band[1]}<br><span class="mono" style="font-size:.85rem">courses ${(courses/1000).toFixed(2)} g + maintenance ${(maint/1000).toFixed(2)} g</span></p></div>
+    <div class="card"><div class="eyebrow">Actions</div><ul>${acts.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div></div>`; };
+  el.addEventListener("input",calc); el.addEventListener("change",calc); calc();
+};
+
+/* ---- Ventilation helper ---- */
+W.ventilation = el => {
+  el.innerHTML=`<div class="wh"><h3>Ventilation helper (adult)</h3></div>
+  <div class="callout bad">Specialist ICU decision support only. Settings must be individualised by the treating intensivist.</div>
+  <div class="fgrid"><div class="field"><label for="vt_sex">Sex</label><select id="vt_sex"><option value="m">Male</option><option value="f">Female</option></select></div>
+  <div class="field"><label for="vt_h">Height (cm)</label><input id="vt_h" type="number" value="172"></div>
+  <div class="field"><label for="vt_pp">Plateau pressure (cmH₂O)</label><input id="vt_pp" type="number" value="27"></div>
+  <div class="field"><label for="vt_ap">Auto-PEEP (cmH₂O)</label><input id="vt_ap" type="number" value="12"></div>
+  <div class="field"><label for="vt_ph">Arterial pH</label><input id="vt_ph" type="number" step="0.01" value="7.18"></div>
+  <div class="field"><label for="vt_bp">Systolic BP (mmHg)</label><input id="vt_bp" type="number" value="96"></div></div>
+  <div id="vt_out" style="margin-top:10px"></div>${srcRef("Supplementary: critical care consensus · GINA 2026 p.188")}`;
+  const calc=()=>{ const g=id=>num($("#"+id,el).value), h=g("vt_h")||0, m=$("#vt_sex",el).value==="m";
+    const pbw=(m?50:45.5)+0.91*(h-152.4), pp=g("vt_pp"), ap=g("vt_ap"), ph=g("vt_ph"), bp=g("vt_bp"), w=[];
+    if(pp!=null&&pp>=30) w.push(["bad","Plateau ≥30 cmH₂O: reduce tidal volume and/or rate; lengthen expiratory time."]);
+    if(ap!=null&&ap>=10) w.push(["warn","Auto-PEEP ≥10 cmH₂O: significant dynamic hyperinflation — reduce minute ventilation, increase expiratory time."]);
+    if(ph!=null&&ph<7.15) w.push(["bad","pH <7.15: beyond usual permissive hypercapnia target; balance against hyperinflation, consider rescue options."]);
+    else if(ph!=null&&ph<7.25) w.push(["good","pH 7.15–7.25: permissive hypercapnia acceptable if oxygenation and haemodynamics allow."]);
+    if(bp!=null&&bp<90) w.push(["bad","Hypotension: disconnect from ventilator 30–60 s, exclude tension pneumothorax, give fluids."]);
+    $("#vt_out",el).innerHTML=`<div class="grid g2"><div class="result"><div class="eyebrow">Predicted body weight</div><div class="big num">${pbw.toFixed(0)} kg</div>
+    <p class="mono" style="font-size:.88rem">Tidal volume 6–8 mL/kg: ${Math.round(6*pbw)}–${Math.round(8*pbw)} mL<br>Rate ≈8–12/min · high inspiratory flow (60–80 L/min)<br>I:E 1:3–1:5 · external PEEP low · FiO₂ to SpO₂ target</p></div>
+    <div class="stack" style="gap:8px">${w.map(x=>`<div class="result ${x[0]}" style="padding:10px 12px"><p>${esc(x[1])}</p></div>`).join("")||`<div class="result good"><p>Measured values within usual limits.</p></div>`}</div></div>`; };
+  el.addEventListener("input",calc); el.addEventListener("change",calc); calc();
+};
+
+/* ---- extra scores (C-ACT, AQLQ) appended to scoretool ---- */
+const _scoretool = W.scoretool;
+W.scoretool = el => {
+  _scoretool(el);
+  const extra=document.createElement("div");
+  extra.innerHTML=`<h4>Childhood ACT and AQLQ <span class="pill">Supplementary</span></h4><div class="grid g2"><div class="stack"><div class="field"><label for="s_cact">C-ACT total (0–27, ages 4–11)</label><input id="s_cact" type="number" min="0" max="27" value="21"></div><div id="s_cact_o"></div></div>
+  <div class="stack"><div class="fgrid"><div class="field"><label for="s_aq1">AQLQ baseline (1–7)</label><input id="s_aq1" type="number" step="0.1" value="4.2"></div><div class="field"><label for="s_aq2">AQLQ now (1–7)</label><input id="s_aq2" type="number" step="0.1" value="4.9"></div></div><div id="s_aq_o"></div></div></div>
+  <p class="muted" style="font-size:.84rem">C-ACT: ≤19 suggests inadequately controlled asthma. AQLQ: 32 items, 1–7 (higher = better quality of life); change ≥0.5 is clinically important; mini-AQLQ has 15 items.</p>`;
+  el.appendChild(extra);
+  const c=()=>{ const a=num($("#s_cact",el).value), b1=num($("#s_aq1",el).value), b2=num($("#s_aq2",el).value);
+    $("#s_cact_o",el).innerHTML = a==null||a<0||a>27?`<div class="result">Enter 0–27.</div>`: a<=19?`<div class="result warn"><div class="big">Not well controlled</div><p>C-ACT ≤19.</p></div>`:`<div class="result good"><div class="big">Well controlled</div><p>C-ACT 20–27.</p></div>`;
+    if(b1!=null&&b2!=null){ const d=b2-b1; $("#s_aq_o",el).innerHTML=`<div class="result ${d>=0.5?"good":d<=-0.5?"bad":"warn"}"><div class="big num">${d>0?"+":""}${d.toFixed(1)}</div><p>${d>=0.5?"Clinically important improvement":d<=-0.5?"Clinically important deterioration":"Change below MCID (0.5)"}</p></div>`; } };
+  extra.addEventListener("input",c); c();
+};
+
+
 function mountWidgets(root){ $$("[data-w]",root).forEach(el=>{ const f=W[el.dataset.w]; if(f){ try{ f(el); }catch(err){ el.innerHTML=`<p class="muted">This tool could not load: ${esc(err.message)}</p>`; } } }); }
 
 /* =====================================================================
@@ -1051,6 +1426,256 @@ V.pbackup = () => shell(`<div class="crumbs"><a href="#patients">Patients</a>›
   <div class="row"><button class="btn" data-a="copybk">Copy backup</button></div></div>
   <div class="card stack" style="margin-top:14px"><div class="eyebrow">Restore</div><textarea id="bk_in" placeholder="Paste a backup here"></textarea>
   <div class="row"><input id="bk_file" type="file" accept=".json,.txt,application/json,text/plain" aria-label="Choose backup file"><button class="btn" data-a="restore">Restore (replace all)</button><button class="btn ghost" data-a="merge">Merge</button></div><div id="bk_msg"></div></div>`);
+
+/* =====================================================================
+   FOLLOW-UP v2, DASHBOARD, REPORTS
+===================================================================== */
+const VISIT_TYPES=[["routine","Routine follow-up"],["initial","Initial consultation"],["postexac","Post-exacerbation"],["severe","Severe asthma clinic"],["biologic","Biologic review"]];
+const COMORB=["Rhinitis","Sinusitis","Nasal polyps","Obesity","GERD","OSA","Anxiety/depression","Smoking"];
+P.example = () => { const d=(m)=>{const x=new Date(); x.setMonth(x.getMonth()-m); return x.toISOString().slice(0,10);};
+  return { id:"pexample", code:"EX-01 (example)", age:"adult", track:"1", dxConfirmed:true, ocsCourseMg:200,
+    biologic:{name:"Mepolizumab", start:d(6)}, notes:"Example record to show the follow-up view. Delete it when you add your own patients.",
+    visits:[
+      {date:d(12), type:"initial", sc:[1,1,1,1], act:11, acq:3.0, exac:2, ocs:2, ed:1, adm:0, icu:0, fev1:58, fev1L:1.80, fvcL:3.10, pef:300, eos:640, feno:46, step:"4", tech:"errors", adh:"partial", maintOcs:0, comorb:["Nasal polyps","Rhinitis"], plan:"Medium-dose MART; technique training; refer severe clinic", next:d(9)},
+      {date:d(9), type:"postexac", sc:[1,1,1,0], act:14, acq:2.4, exac:1, ocs:1, ed:1, adm:1, icu:0, fev1:61, fev1L:1.86, fvcL:3.15, pef:320, eos:580, feno:44, step:"5", tech:"ok", adh:"good", maintOcs:5, comorb:["Nasal polyps","Rhinitis"], plan:"Admitted 3 days; maintenance prednisolone 5 mg; biologic work-up", next:d(6)},
+      {date:d(6), type:"severe", sc:[1,0,1,1], act:15, acq:2.2, exac:0, ocs:0, ed:0, adm:0, icu:0, fev1:64, fev1L:1.92, fvcL:3.20, pef:340, eos:610, feno:40, step:"5", tech:"ok", adh:"good", maintOcs:5, comorb:["Nasal polyps"], plan:"Mepolizumab started", next:d(3)},
+      {date:d(3), type:"biologic", sc:[0,0,1,0], act:19, acq:1.4, exac:0, ocs:0, ed:0, adm:0, icu:0, fev1:72, fev1L:2.08, fvcL:3.30, pef:390, eos:70, feno:31, step:"5", tech:"ok", adh:"good", maintOcs:2.5, comorb:["Nasal polyps"], plan:"Good response: taper OCS", next:d(0)},
+      {date:d(0), type:"biologic", sc:[0,0,0,0], act:22, acq:0.8, exac:0, ocs:0, ed:0, adm:0, icu:0, fev1:76, fev1L:2.16, fvcL:3.34, pef:410, eos:50, feno:27, step:"5", tech:"ok", adh:"good", maintOcs:0, comorb:[], plan:"OCS stopped after normal morning cortisol; continue mepolizumab", next:d(-3)}
+    ] }; };
+const sortV = p => [...p.visits].sort((a,b)=>a.date.localeCompare(b.date));
+P.ocsSeries = p => { const vs=sortV(p), per=+p.ocsCourseMg||200; let cum=0; return vs.map((v,i)=>{ const prev=vs[i-1]; const days=prev?Math.max(0,(new Date(v.date)-new Date(prev.date))/864e5):0; cum += (+v.ocs||0)*per + (prev?(+prev.maintOcs||0)*days:0); return {date:v.date, cum:Math.round(cum)/1000}; }); };
+P.within12 = (p, key) => { const y=new Date(); y.setFullYear(y.getFullYear()-1); const ys=y.toISOString().slice(0,10); return sortV(p).filter(v=>v.date>=ys).reduce((s,v)=>s+(+v[key]||0),0); };
+const _flags = P.flags;
+P.flags = p => { const f=_flags(p); const vs=sortV(p), last=vs[vs.length-1]; if(!last) return f;
+  if(+last.maintOcs>0) f.push(["Maintenance OCS "+last.maintOcs+" mg/day","bad"]);
+  if(p.biologic&&p.biologic.name){ const m=(new Date()-new Date(p.biologic.start))/(864e5*30.4); f.push([`${p.biologic.name} · ${m<4?"response review due at 4 months":"review response"}`, m<4?"":"warn"]); }
+  if(last.act!=null&&last.act!==""&&+last.act<20) f.push(["ACT "+last.act,"warn"]);
+  if(+last.icu>0) f.push(["ICU admission","bad"]);
+  return f; };
+P.score = p => P.flags(p).reduce((s,f)=>s+(f[1]==="bad"?3:f[1]==="warn"?1:0),0);
+P.status = p => { const vs=sortV(p), last=vs[vs.length-1]; return last?P.level(last):["No visits","",0]; };
+
+function barChart(items, opts){ // items: [{label, value, color?, title?}]
+  const W_=520,H=180,pl=30,pr=10,pt=14,pb=34, max=Math.max(1,...items.map(i=>i.value)), bw=(W_-pl-pr)/items.length;
+  const y=v=>pt+(H-pt-pb)*(1-v/max), ticks=[0,Math.ceil(max/2),max].filter((v,i,a)=>a.indexOf(v)===i);
+  return `<svg class="chart" viewBox="0 0 ${W_} ${H}" role="img" aria-label="${esc(opts.title)}">
+  ${ticks.map(t=>`<line class="gl" x1="${pl}" x2="${W_-pr}" y1="${y(t)}" y2="${y(t)}"/><text x="${pl-6}" y="${y(t)+4}" text-anchor="end">${t}</text>`).join("")}
+  ${items.map((it,i)=>{ const x=pl+i*bw+bw*0.2, w=bw*0.6, h=Math.max(0,H-pb-y(it.value)); return `<g><rect x="${x}" y="${y(it.value)}" width="${w}" height="${h}" rx="4" fill="${it.color||opts.color}"><title>${esc(it.label)}: ${it.value}</title></rect>
+   <text x="${x+w/2}" y="${y(it.value)-5}" text-anchor="middle" style="fill:var(--ink);font-weight:700">${it.value}</text><text x="${x+w/2}" y="${H-14}" text-anchor="middle">${esc(it.label)}</text></g>`; }).join("")}</svg>`;
+}
+
+/* ---------------- DASHBOARD ---------------- */
+V.dash = () => {
+  const ps=P.all(), E=S.E, td=today(), in14=(()=>{const x=new Date(); x.setDate(x.getDate()+14); return x.toISOString().slice(0,10);})();
+  const last = p => { const v=sortV(p); return v[v.length-1]; };
+  const lv = ps.map(p=>({p, l:last(p), st:P.status(p), fl:P.flags(p)}));
+  const k = {
+    total: ps.length,
+    unc: lv.filter(x=>x.st[1]==="bad"||x.st[1]==="warn").length,
+    overdue: lv.filter(x=>x.l&&x.l.next&&x.l.next<td).length,
+    due: lv.filter(x=>x.l&&x.l.next&&x.l.next>=td&&x.l.next<=in14).length,
+    exac: ps.reduce((s,p)=>s+P.within12(p,"exac"),0),
+    ocs: ps.filter(p=>P.within12(p,"ocs")>=2||(last(p)&&+last(p).maintOcs>0)).length,
+    bio: ps.filter(p=>p.biologic&&p.biologic.name).length,
+    sd: lv.filter(x=>x.fl.some(f=>/Step-down/.test(f[0]))).length
+  };
+  const tile=(n,l,f,tone,sub)=>`<a class="kpi ${tone||""}" href="#patients-${f}"><span class="kn num">${n}</span><span class="kl">${esc(l)}</span>${sub?`<span class="ks">${esc(sub)}</span>`:""}</a>`;
+  const ctrl=[["Well controlled","good"],["Partly controlled","warn"],["Uncontrolled","bad"]].map(([l,t])=>({label:l.split(" ")[0], value:lv.filter(x=>x.st[0]===l).length, color:`var(--${t})`}));
+  const steps=["1","2","3","4","5"].map(s=>({label:"Step "+s, value:lv.filter(x=>x.l&&String(x.l.step)===s).length}));
+  const att=lv.filter(x=>P.score(x.p)>0).sort((a,b)=>P.score(b.p)-P.score(a.p)).slice(0,6);
+  const upcoming=lv.filter(x=>x.l&&x.l.next).sort((a,b)=>a.l.next.localeCompare(b.l.next)).slice(0,6);
+  const box=store.get("leitner_"+S.edId,{}), mastered=E.learning.flashcards.filter(c=>(box[c.id]||1)>=5).length, ql=store.get("quizlog_"+S.edId,{right:0,total:0});
+  const studied=Object.keys(prog.studied()).length;
+  const quick=["initial","control","steps","spiro","severity","plan","bio","bioresp","ocsx","pheno","ics","device"].map(id=>TOOLS.find(t=>t.id===id)).filter(Boolean);
+  const notice = store.get("notice_ok",false) ? "" : `<div class="callout row sp" id="noticeBox" style="align-items:center"><span>Educational and decision-support tool based on ${esc(edInfo(S.edId).label)}. It does not replace clinical judgement. Patient records stay on this device; use initials or IDs only.</span><button class="btn ghost sm" data-a="noticeok">Dismiss</button></div>`;
+  return shell(`${notice}
+  <div class="row sp" style="align-items:flex-end;margin-bottom:14px"><div><span class="eyebrow">${esc(new Date().toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long",year:"numeric"}))}</span><h1>Asthma clinic dashboard</h1></div>
+  <div class="row"><a class="btn" href="#tool-initial">New consultation</a><a class="btn ghost" href="#patients">Patients</a></div></div>
+  <div class="kpis">
+    ${tile(k.total,"Patients followed","all","","")}
+    ${tile(k.unc,"Not well controlled","uncontrolled",k.unc?"warn":"good","at last visit")}
+    ${tile(k.overdue,"Reviews overdue","overdue",k.overdue?"bad":"good",k.due+" due in 14 days")}
+    ${tile(k.exac,"Exacerbations","exac",k.exac?"warn":"good","last 12 months")}
+    ${tile(k.ocs,"OCS burden","ocs",k.ocs?"bad":"good","≥2 courses or maintenance")}
+    ${tile(k.bio,"On biologics","bio","","")}
+    ${tile(k.sd,"Step-down candidates","stepdown",k.sd?"good":"","")}
+  </div>
+  <div class="dash-grid">
+    <section class="card"><div class="row sp"><h3>Needs attention</h3><a href="#patients" style="font-size:.85rem">All patients</a></div>
+      <div class="stack" style="gap:8px;margin-top:10px">${att.map(x=>`<a class="prow" href="#p-${x.p.id}"><span><b>${esc(x.p.code)}</b> <span class="pill ${x.st[1]}">${esc(x.st[0])}</span><div class="flags" style="margin-top:5px">${x.fl.filter(f=>f[1]==="bad"||f[1]==="warn").slice(0,3).map(f=>`<span class="pill ${f[1]}">${esc(f[0])}</span>`).join("")}</div></span><span class="muted">›</span></a>`).join("")||`<p class="muted">No patients with active flags.</p>`}</div></section>
+    <section class="card"><h3>Upcoming reviews</h3><table class="tbl" style="margin-top:8px">${upcoming.map(x=>`<tr><td><a href="#p-${x.p.id}">${esc(x.p.code)}</a></td><td class="num">${fmtDate(x.l.next)}</td><td>${x.l.next<td?`<span class="pill bad">Overdue</span>`:x.l.next<=in14?`<span class="pill warn">Soon</span>`:`<span class="pill">Planned</span>`}</td></tr>`).join("")||`<tr><td class="muted">No reviews scheduled.</td></tr>`}</table></section>
+    <section class="card"><h3>Control at last visit</h3>${barChart(ctrl,{title:"Control at last visit",color:"var(--primary)"})}</section>
+    <section class="card"><h3>Current GINA step</h3>${barChart(steps,{title:"Patients by step",color:"var(--accent)"})}</section>
+  </div>
+  <div class="section-h"><h2>Quick tools</h2><a href="#tools">All ${TOOLS.length} tools →</a></div>
+  <div class="grid g3">${quick.map(t=>`<a class="qt" href="#tool-${t.id}" style="--mc:var(--c-${modOf(t.m).color})"><span class="dot"></span><b>${esc(t.name)}</b><span>${esc(t.d)}</span></a>`).join("")}</div>
+  <div class="dash-grid" style="margin-top:20px">
+    <section class="card"><div class="row sp"><h3>Your study progress</h3><a href="#study" style="font-size:.85rem">Study</a></div>
+      <div class="grid g3" style="margin-top:10px">
+        <div><div class="kn num" style="font-size:1.6rem">${Math.round(100*studied/E.topics.length)}%</div><span class="muted" style="font-size:.85rem">topics studied (${studied}/${E.topics.length})</span><div class="bar"><i style="width:${100*studied/E.topics.length}%"></i></div></div>
+        <div><div class="kn num" style="font-size:1.6rem">${mastered}</div><span class="muted" style="font-size:.85rem">flashcards mastered of ${E.learning.flashcards.length}</span><div class="bar"><i style="width:${100*mastered/E.learning.flashcards.length}%"></i></div></div>
+        <div><div class="kn num" style="font-size:1.6rem">${ql.total?Math.round(100*ql.right/ql.total)+"%":"—"}</div><span class="muted" style="font-size:.85rem">quiz accuracy (${ql.total} answered)</span></div>
+      </div></section>
+    <a class="hero-card" href="#updates" style="text-decoration:none;min-height:0"><span class="eyebrow">What's new in ${esc(S.edId)}</span><h3>${E.whatsnew.items.length} changes since GINA ${esc(E.whatsnew.previous)}</h3>
+      <ul style="margin:0;padding-left:1.1rem;font-size:.9rem">${E.whatsnew.items.slice(0,4).map(w=>`<li>${esc(w.title)}</li>`).join("")}</ul></a>
+  </div>
+  <div class="section-h"><h2>Learning library</h2><a href="#learn">${E.meta.modules.length} modules →</a></div>
+  <div class="grid g2">${E.meta.modules.map(moduleCard).join("")}</div>`);
+};
+
+/* ---------------- PATIENT LIST ---------------- */
+const PFILT = {all:["All patients",()=>true], uncontrolled:["Not well controlled",p=>["warn","bad"].includes(P.status(p)[1])],
+  overdue:["Reviews overdue",p=>{const v=sortV(p).pop(); return v&&v.next&&v.next<today();}], exac:["Exacerbation in last 12 months",p=>P.within12(p,"exac")>0],
+  ocs:["OCS burden",p=>{const v=sortV(p).pop(); return P.within12(p,"ocs")>=2||(v&&+v.maintOcs>0);}], bio:["On biologics",p=>p.biologic&&p.biologic.name], stepdown:["Step-down candidates",p=>P.flags(p).some(f=>/Step-down/.test(f[0]))]};
+V.patients = (filter="all") => {
+  const F=PFILT[filter]||PFILT.all, ps=P.all().filter(F[1]);
+  return shell(`<div class="row sp"><div><h1>Patient follow-up</h1><p class="muted">Initials or ID only. Records stay in this browser on this device; use Backup to move them.</p></div>
+  <div class="row"><button class="btn" data-a="add">Add patient</button><a class="btn ghost" href="#pbackup">Backup</a></div></div>
+  <div class="seg" style="margin:10px 0">${Object.entries(PFILT).map(([k,v])=>`<a href="#patients-${k}" class="${k===filter?"on":""}">${esc(v[0])}</a>`).join("")}</div>
+  <div id="addForm" hidden class="card" style="margin-top:12px"><div class="fgrid">
+    <div class="field"><label for="np_code">Initials / ID</label><input id="np_code" type="text" maxlength="24" placeholder="e.g. AM-104"></div>
+    <div class="field"><label for="np_age">Age group</label><select id="np_age"><option value="adult">Adult/adolescent 12+</option><option value="child">Child 6–11</option><option value="pre">Child ≤5</option></select></div>
+    <div class="field"><label for="np_track">Track</label><select id="np_track"><option value="1">Track 1 (ICS-formoterol)</option><option value="2">Track 2 (ICS-SABA/SABA)</option><option value="-">Not applicable</option></select></div>
+    <div class="field"><label for="np_dx">Diagnosis confirmed?</label><select id="np_dx"><option value="1">Yes, documented</option><option value="0">Not yet</option></select></div>
+  </div><div class="row" style="margin-top:10px"><button class="btn" data-a="save">Save patient</button><button class="btn ghost" data-a="cancel">Cancel</button></div></div>
+  <div class="stack" style="margin-top:12px">${ps.length?ps.map(p=>{ const vs=sortV(p), last=vs[vs.length-1], f=P.flags(p);
+    return `<a class="prow" href="#p-${p.id}"><span><b style="font-family:var(--f-display);font-size:1.05rem">${esc(p.code)}</b> <span class="muted" style="font-size:.86rem">· ${p.age==="adult"?"12+":p.age==="child"?"6–11":"≤5"} · ${vs.length} visit${vs.length!==1?"s":""} · last ${fmtDate(last&&last.date)}${p.biologic&&p.biologic.name?" · "+esc(p.biologic.name):""}</span>
+    <div class="flags" style="margin-top:6px">${f.map(x=>`<span class="pill ${x[1]}">${esc(x[0])}</span>`).join("")||`<span class="pill good">No flags</span>`}</div></span><span class="muted">›</span></a>`; }).join(""):`<div class="card"><p>No patients in this view.</p></div>`}</div>`);
+};
+
+/* ---------------- PATIENT DETAIL ---------------- */
+V.patient = id => {
+  const p=P.get(id); if(!p) return shell(`<p>Patient not found. <a href="#patients">Back</a></p>`);
+  const vs=sortV(p), f=P.flags(p), ctrl=vs.map(v=>({date:v.date,s:P.level(v)[2]})), oc=P.ocsSeries(p);
+  const ch=(title,html,note)=>`<div class="card"><div class="eyebrow">${title}</div>${html}${note?`<p class="muted" style="font-size:.8rem">${note}</p>`:""}</div>`;
+  return shell(`<div class="crumbs"><a href="#patients">Patients</a>›<span>${esc(p.code)}</span></div>
+  <div class="row sp"><h1>${esc(p.code)}</h1><div class="row"><button class="btn" data-a="visit">Add visit</button><button class="btn ghost" data-a="edit">Patient details</button><button class="btn ghost" data-a="del">Delete</button></div></div>
+  <div id="delConfirm" hidden class="callout bad"><b>Delete ${esc(p.code)} and all visits?</b> This cannot be undone. <div class="row" style="margin-top:8px"><button class="btn danger sm" data-a="delyes">Delete</button><button class="btn ghost sm" data-a="delno">Keep</button></div></div>
+  <div class="flags" style="margin:8px 0 10px">${f.map(x=>`<span class="pill ${x[1]}">${esc(x[0])}</span>`).join("")||`<span class="pill good">No flags</span>`}</div>
+  ${p.notes?`<p class="muted">${esc(p.notes)}</p>`:""}
+  <div id="editForm" hidden class="card" style="margin:12px 0"><div class="fgrid">
+    <div class="field"><label for="pe_code">Initials / ID</label><input id="pe_code" type="text" value="${esc(p.code)}"></div>
+    <div class="field"><label for="pe_bio">Biologic (if any)</label><select id="pe_bio"><option value="">None</option>${["Omalizumab","Mepolizumab","Reslizumab","Benralizumab","Depemokimab","Dupilumab","Tezepelumab"].map(b=>`<option ${p.biologic&&p.biologic.name===b?"selected":""}>${b}</option>`).join("")}</select></div>
+    <div class="field"><label for="pe_bios">Biologic start date</label><input id="pe_bios" type="date" value="${esc(p.biologic&&p.biologic.start||"")}"></div>
+    <div class="field"><label for="pe_ocsmg">mg prednisolone per OCS course</label><input id="pe_ocsmg" type="number" value="${esc(p.ocsCourseMg||200)}"></div>
+    <div class="field"><label for="pe_dx">Diagnosis confirmed?</label><select id="pe_dx"><option value="1" ${p.dxConfirmed?"selected":""}>Yes</option><option value="0" ${p.dxConfirmed?"":"selected"}>Not yet</option></select></div>
+  </div><div class="field" style="margin-top:8px"><label for="pe_notes">Notes</label><textarea id="pe_notes">${esc(p.notes||"")}</textarea></div>
+  <div class="row" style="margin-top:8px"><button class="btn" data-a="saveedit">Save details</button><button class="btn ghost" data-a="canceledit">Cancel</button></div></div>
+  <div id="visitForm" hidden class="card" style="margin:12px 0">${visitForm2(p)}</div>
+  <div class="card" style="margin-bottom:14px"><div class="eyebrow">Reports</div><div class="row" style="margin-top:8px">${REPORTS.map(r=>`<a class="btn ghost sm" href="#r-${p.id}-${r[0]}">${esc(r[1])}</a>`).join("")}</div></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">
+    ${ch("ACT (5–25)",lineChart(vs,"act",{title:"ACT",min:5,max:25,ticks:[5,10,15,20,25],color:"var(--good)",band:[20,25],bandColor:"var(--good)"}),"Shaded: well controlled (20–25)")}
+    ${ch("GINA symptom control (criteria 0–4)",lineChart(ctrl,"s",{title:"control",min:0,max:4,ticks:[0,1,2,3,4],color:"var(--accent)"}),"0 well · 1–2 partly · 3–4 uncontrolled")}
+    ${ch("FEV1 % predicted",lineChart(vs,"fev1",{title:"FEV1",min:30,max:110,ticks:[40,60,80,100],unit:"%",color:"var(--primary)",band:[30,60],bandColor:"var(--bad)"}),"Shaded: &lt;60% (high risk)")}
+    ${ch("Exacerbations per visit interval",barChart(vs.map(v=>({label:new Date(v.date+"T00:00:00").toLocaleDateString(undefined,{month:"short",year:"2-digit"}),value:+v.exac||0})),{title:"Exacerbations",color:"var(--bad)"}))}
+    ${ch("Blood eosinophils (/µL)",lineChart(vs,"eos",{title:"eosinophils",min:0,max:Math.max(800,...vs.map(v=>+v.eos||0)),ticks:[0,150,300,600],color:"var(--c-violet)"}))}
+    ${ch("FeNO (ppb)",lineChart(vs,"feno",{title:"FeNO",min:0,max:Math.max(80,...vs.map(v=>+v.feno||0)),ticks:[0,25,50,75],color:"var(--c-cyan)"}))}
+    ${ch("Cumulative OCS (g prednisolone)",lineChart(oc,"cum",{title:"cumulative OCS",min:0,max:Math.max(1.2,...oc.map(o=>o.cum)),ticks:[0,0.5,1],color:"var(--c-red)",band:[0.5,Math.max(1.2,...oc.map(o=>o.cum))],bandColor:"var(--warn)"}),"Estimated from courses × "+(p.ocsCourseMg||200)+" mg + maintenance dose × days. Shaded ≥0.5 g.")}
+  </div>
+  <h3 style="margin:18px 0 8px">Visits</h3>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Date</th><th>Type</th><th>Control</th><th class="num">ACT</th><th class="num">Exac</th><th class="num">OCS</th><th class="num">ED/Adm</th><th class="num">FEV1%</th><th class="num">Eos</th><th class="num">FeNO</th><th>Step</th><th>Tech/Adh</th><th>Plan</th><th>Next</th><th></th></tr></thead><tbody>
+  ${vs.slice().reverse().map(v=>{const L=P.level(v);return `<tr><td>${fmtDate(v.date)}</td><td>${esc((VISIT_TYPES.find(t=>t[0]===v.type)||["","Routine"])[1])}</td><td><span class="pill ${L[1]}">${L[0]}</span></td><td class="num">${esc(v.act??"")}</td><td class="num">${esc(v.exac??"")}</td><td class="num">${esc(v.ocs??"")}${+v.maintOcs?` +${esc(v.maintOcs)}mg/d`:""}</td><td class="num">${esc((v.ed??0)+"/"+(v.adm??0))}</td><td class="num">${esc(v.fev1??"")}</td><td class="num">${esc(v.eos??"")}</td><td class="num">${esc(v.feno??"")}</td><td>${esc(v.step??"")}</td><td>${v.tech==="ok"?"✓":v.tech==="errors"?"Errors":"—"} / ${esc(v.adh||"—")}</td><td style="min-width:180px">${esc(v.plan||"")}</td><td>${fmtDate(v.next)}</td><td><button class="btn ghost sm" data-del-visit="${esc(v.date)}">Remove</button></td></tr>`;}).join("")}</tbody></table></div>`);
+};
+function visitForm2(p){
+  const q = p.age==="pre"?["Daytime symptoms >2×/week","Night waking or coughing","SABA >2×/week","Activity limitation"]:["Daytime symptoms >2×/week","Any night waking","SABA reliever >2×/week","Activity limitation"];
+  const last=sortV(p).pop()||{};
+  const f=(id,l,t,extra)=>`<div class="field"><label for="${id}">${l}</label><input id="${id}" type="${t||"number"}" ${extra||""}></div>`;
+  return `<h3>New visit</h3><div class="fgrid" style="margin-top:8px">
+  ${f("v_date","Date","date",`value="${today()}"`)}
+  <div class="field"><label for="v_type">Visit type</label><select id="v_type">${VISIT_TYPES.map(t=>`<option value="${t[0]}">${t[1]}</option>`).join("")}</select></div>
+  <div class="field"><label for="v_step">GINA step</label><select id="v_step">${["1","2","3","4","5"].map(s=>`<option ${String(last.step||"3")===s?"selected":""}>${s}</option>`).join("")}</select></div>
+  ${f("v_act","ACT (5–25)","number",'placeholder="optional"')}${f("v_acq","ACQ-5 (0–6)","number",'step="0.1" placeholder="optional"')}</div>
+  <div class="lbl" style="margin-top:12px">Symptom control, past 4 weeks</div><div class="grid g2" style="gap:6px;margin-top:4px">${q.map((x,i)=>`<label class="chk"><input type="checkbox" id="v_sc${i}"><span>${esc(x)}</span></label>`).join("")}</div>
+  <div class="lbl" style="margin-top:12px">Exacerbations since last visit</div><div class="fgrid" style="margin-top:4px">
+  ${f("v_exac","Exacerbations","number",'min="0" value="0"')}${f("v_ocs","OCS courses","number",'min="0" value="0"')}${f("v_ed","ED visits","number",'min="0" value="0"')}${f("v_adm","Admissions","number",'min="0" value="0"')}${f("v_icu","ICU admissions","number",'min="0" value="0"')}${f("v_moc","Maintenance OCS (mg/day)","number",`min="0" step="0.5" value="${esc(last.maintOcs||0)}"`)}</div>
+  <div class="lbl" style="margin-top:12px">Lung function and biomarkers</div><div class="fgrid" style="margin-top:4px">
+  ${f("v_fev1","FEV1 % predicted","number",'placeholder="optional"')}${f("v_fev1L","FEV1 (L)","number",'step="0.01" placeholder="optional"')}${f("v_fvcL","FVC (L)","number",'step="0.01" placeholder="optional"')}${f("v_pef","PEF (L/min)","number",'placeholder="optional"')}${f("v_eos","Blood eosinophils (/µL)","number",'placeholder="optional"')}${f("v_feno","FeNO (ppb)","number",'placeholder="optional"')}${f("v_ige","Total IgE (IU/mL)","number",'placeholder="optional"')}</div>
+  <div class="lbl" style="margin-top:12px">Treatment</div><div class="fgrid" style="margin-top:4px">
+  <div class="field"><label for="v_tech">Inhaler technique</label><select id="v_tech"><option value="ok">Correct</option><option value="errors">Errors found</option></select></div>
+  <div class="field"><label for="v_adh">Adherence</label><select id="v_adh"><option value="good">Good</option><option value="partial">Partial</option><option value="poor">Poor</option></select></div>
+  <div class="field"><label for="v_access">Medication access</label><select id="v_access"><option value="ok">No problem</option><option value="cost">Cost / supply problem</option></select></div>
+  ${f("v_se","Side-effects","text",'placeholder="e.g. dysphonia"')}${f("v_next","Next review","date")}</div>
+  <div class="lbl" style="margin-top:12px">Comorbidities and risk</div><div class="grid g3" style="gap:6px;margin-top:4px">${COMORB.map((c,i)=>`<label class="chk ${(last.comorb||[]).includes(c)?"on":""}"><input type="checkbox" id="v_cm${i}" ${(last.comorb||[]).includes(c)?"checked":""}><span>${esc(c)}</span></label>`).join("")}</div>
+  <div class="field" style="margin-top:10px"><label for="v_plan">Plan / notes</label><textarea id="v_plan" maxlength="800"></textarea></div>
+  <div class="row" style="margin-top:10px"><button class="btn" data-a="savevisit">Save visit</button><button class="btn ghost" data-a="cancelvisit">Cancel</button></div>`;
+}
+function saveVisit2(p){
+  const g=id=>{const el=$("#"+id); return el?el.value:"";}, n=id=>{const s=g(id); return s===""?null:+s;};
+  p.visits.push({date:g("v_date")||today(), type:g("v_type"), sc:[0,1,2,3].map(i=>$("#v_sc"+i).checked?1:0), act:n("v_act"), acq:n("v_acq"),
+    exac:+g("v_exac")||0, ocs:+g("v_ocs")||0, ed:+g("v_ed")||0, adm:+g("v_adm")||0, icu:+g("v_icu")||0, maintOcs:+g("v_moc")||0,
+    fev1:n("v_fev1"), fev1L:n("v_fev1L"), fvcL:n("v_fvcL"), pef:n("v_pef"), eos:n("v_eos"), feno:n("v_feno"), ige:n("v_ige"),
+    step:g("v_step"), tech:g("v_tech"), adh:g("v_adh"), access:g("v_access"), se:g("v_se"), comorb:COMORB.filter((c,i)=>$("#v_cm"+i).checked), plan:g("v_plan"), next:g("v_next")});
+}
+
+/* ---------------- REPORTS ---------------- */
+const REPORTS=[["initial","Initial consultation"],["routine","Routine follow-up"],["postexac","Post-exacerbation"],["severe","Severe asthma clinic"],["bioresp","Biologic response"],["ocs","OCS reduction"],["step","Step-up / step-down"],["schedule","Follow-up schedule"]];
+function stepAdvice(p){
+  const vs=sortV(p), l=vs[vs.length-1]; if(!l) return ["","No visits recorded."];
+  const L=P.level(l), ex12=P.within12(p,"exac"), st=+l.step||0;
+  if(L[1]!=="good"||+l.exac>0){
+    if(l.tech==="errors"||(l.adh&&l.adh!=="good")) return ["warn",`Not well controlled, but ${l.tech==="errors"?"inhaler technique errors":""}${l.tech==="errors"&&l.adh!=="good"?" and ":""}${l.adh!=="good"?"adherence problems":""} found. Correct these first, review triggers and comorbidities, then reassess in 4–6 weeks before stepping up.`];
+    if(st>=5) return ["bad","Uncontrolled at Step 5: refer/continue severe asthma pathway; phenotype; consider biologic or switch class; minimise OCS."];
+    return ["bad",`Consider step-up to Step ${st+1} as a 2–3 month therapeutic trial (after confirming diagnosis, technique, adherence and exposures). For Track 1 use MART at the new dose. Return to the previous step if no response.`];
+  }
+  const firstGood=(()=>{let k=vs.length-1; while(k>=0&&P.level(vs[k])[1]==="good"&&!(+vs[k].exac)) k--; return vs[k+1];})();
+  const months = firstGood?(new Date(l.date)-new Date(firstGood.date))/(864e5*30.4):0;
+  if(months>=2.8){ if(+l.maintOcs>0) return ["good","Controlled ≥3 months on maintenance OCS: taper OCS first (2.5–5 mg every 2–4 weeks; morning cortisol near 5 mg/day)."];
+    return ["good",`Controlled for ~${months.toFixed(0)} months: consider stepping down (reduce ICS by 25–50%) at a suitable time with a written action plan${ex12?" — under close supervision because of an exacerbation in the last 12 months":""}. Do not stop ICS.`]; }
+  return ["",`Controlled at Step ${st}; continue and reassess. Step-down can be considered after 3 months of good control.`];
+}
+function scheduleAdvice(p){
+  const vs=sortV(p), l=vs[vs.length-1]||{}, out=[];
+  if(l.type==="postexac"||+l.exac>0) out.push(["Within 2–7 days after an ED visit/admission (1–2 weeks after a self-managed flare)","Post-exacerbation review"]);
+  if(p.biologic&&p.biologic.name){ const m=(new Date()-new Date(p.biologic.start))/(864e5*30.4); out.push([m<4?"At 3–4 months after starting (6 months for depemokimab)":"Every 3–6 months","Biologic response review"]); }
+  if(+l.maintOcs>0) out.push(["Every 2–4 weeks during OCS taper","OCS reduction"]);
+  out.push([P.level(l)[1]==="good"?"Every 3–12 months while stable":"1–3 months after any treatment change","Asthma review"]);
+  out.push(["Every 1–2 years (more often if at risk); 3–6 months after starting ICS","Spirometry"]);
+  if(p.age!=="adult") out.push(["At least yearly","Height (growth)"]);
+  out.push(["At every visit","Technique, adherence, action plan"]);
+  return out;
+}
+V.report = (pid, type) => {
+  const p=P.get(pid), R=REPORTS.find(r=>r[0]===type); if(!p||!R) return shell(`<p>Report not found. <a href="#patients">Back</a></p>`);
+  const vs=sortV(p), l=vs[vs.length-1]||{}, L=P.level(l), fl=P.flags(p);
+  const val=(x,u)=>x==null||x===""?"—":esc(x)+(u||"");
+  const latest=`<table class="tbl"><tr><td>Last visit</td><td>${fmtDate(l.date)}</td><td>GINA step</td><td>${val(l.step)}</td></tr>
+   <tr><td>Symptom control</td><td><span class="pill ${L[1]}">${L[0]}</span></td><td>ACT / ACQ</td><td>${val(l.act)} / ${val(l.acq)}</td></tr>
+   <tr><td>FEV1</td><td>${val(l.fev1,"% pred")} ${l.fev1L?`(${esc(l.fev1L)} L)`:""}</td><td>FEV1/FVC</td><td>${l.fev1L&&l.fvcL?(l.fev1L/l.fvcL).toFixed(2):"—"}</td></tr>
+   <tr><td>Eosinophils</td><td>${val(l.eos,"/µL")}</td><td>FeNO</td><td>${val(l.feno," ppb")}</td></tr>
+   <tr><td>Exacerbations (12 mo)</td><td>${P.within12(p,"exac")}</td><td>OCS courses (12 mo)</td><td>${P.within12(p,"ocs")}${+l.maintOcs?` · maintenance ${esc(l.maintOcs)} mg/day`:""}</td></tr>
+   <tr><td>Technique / adherence</td><td>${l.tech==="ok"?"Correct":l.tech==="errors"?"Errors":"—"} / ${val(l.adh)}</td><td>Comorbidities</td><td>${esc((l.comorb||[]).join(", ")||"—")}</td></tr></table>`;
+  const sa=stepAdvice(p);
+  let body="";
+  if(type==="initial"||type==="routine"){ body=`<div class="zone"><h4>Current status</h4>${latest}</div><div class="zone"><h4>Risk flags</h4><ul>${fl.map(f=>`<li>${esc(f[0])}</li>`).join("")||"<li>None</li>"}</ul></div><div class="zone"><h4>Treatment recommendation</h4><p>${esc(sa[1])}</p></div><div class="zone"><h4>Plan recorded</h4><p>${esc(l.plan||"—")}</p></div>`; }
+  if(type==="postexac"){ const pe=vs.filter(v=>+v.exac>0).pop()||l; body=`<div class="zone"><h4>Exacerbation</h4><p>Recorded at visit ${fmtDate(pe.date)}: ${esc(pe.exac)} exacerbation(s), ${esc(pe.ocs||0)} OCS course(s), ${esc(pe.ed||0)} ED visit(s), ${esc(pe.adm||0)} admission(s), ${esc(pe.icu||0)} ICU.</p></div><div class="zone"><h4>Current status</h4>${latest}</div>
+   <div class="zone"><h4>Post-exacerbation checklist (GINA Box 9-5)</h4><ul><li>ICS-containing treatment started or stepped up (MART from Step 4 if ≥12 y)</li><li>OCS course completed; no taper needed if &lt;2 weeks</li><li>Reliever switched back to as-needed</li><li>Triggers identified (viral, allergen, irritant, adherence, no action plan)</li><li>Inhaler technique and adherence checked</li><li>Written action plan updated</li><li>Refer if ≥1 exacerbation needing OCS/ED/admission in last 12 months despite Step 4</li><li>Next review within 2–3 months</li></ul></div><div class="zone"><h4>Recommendation</h4><p>${esc(sa[1])}</p></div>`; }
+  if(type==="severe"){ body=`<div class="zone"><h4>Current status</h4>${latest}</div><div class="zone"><h4>Phenotype markers</h4><p>Blood eosinophils ${val(l.eos,"/µL")}; FeNO ${val(l.feno," ppb")}; total IgE ${val(l.ige," IU/mL")}. ${(+l.eos>=150||+l.feno>=20)?"Type 2 marker present (GINA thresholds on high-dose ICS).":"No Type 2 marker above threshold; repeat up to 3 times on lowest OCS dose."}</p></div>
+   <div class="zone"><h4>Decision tree position</h4><p>${p.biologic&&p.biologic.name?`On ${esc(p.biologic.name)} since ${fmtDate(p.biologic.start)} → Stage 9 (review response).`:+l.step>=5?"Step 5 without biologic → Stages 5–8 (investigate, phenotype, consider add-on biologic).":"Optimise management (Stages 1–4) before labelling severe asthma."}</p></div>
+   <div class="zone"><h4>Flags</h4><ul>${fl.map(f=>`<li>${esc(f[0])}</li>`).join("")||"<li>None</li>"}</ul></div><div class="zone"><h4>Recommendation</h4><p>${esc(sa[1])}</p></div>`; }
+  if(type==="bioresp"){ if(!(p.biologic&&p.biologic.name)) body=`<div class="zone"><p>No biologic recorded. Add it under Patient details.</p></div>`; else {
+    const start=p.biologic.start, pre=vs.filter(v=>v.date<=start), post=vs.filter(v=>v.date>start), b=pre[pre.length-1]||vs[0], n=l;
+    const y0=new Date(start); y0.setFullYear(y0.getFullYear()-1); const preEx=vs.filter(v=>v.date>y0.toISOString().slice(0,10)&&v.date<=start).reduce((s,v)=>s+(+v.exac||0),0);
+    const months=Math.max(1,(new Date()-new Date(start))/(864e5*30.4)), postEx=post.reduce((s,v)=>s+(+v.exac||0),0), rate=postEx*12/months;
+    const rows=[["Exacerbations (annualised)",preEx,rate.toFixed(1)],["Maintenance OCS (mg/day)",b.maintOcs||0,n.maintOcs||0],["ACT",b.act??"—",n.act??"—"],["ACQ-5",b.acq??"—",n.acq??"—"],["FEV1 % predicted",b.fev1??"—",n.fev1??"—"],["Eosinophils (/µL)",b.eos??"—",n.eos??"—"],["FeNO (ppb)",b.feno??"—",n.feno??"—"]];
+    const good=(preEx>0&&rate<=preEx*0.5)||((+b.maintOcs||0)>0&&(+n.maintOcs||0)<=(+b.maintOcs)*0.5), actd=(n.act!=null&&b.act!=null)?n.act-b.act:null;
+    const verdict = months<4?["warn","Too early (<4 months)"]:good&&(actd==null||actd>=3)?["good","Good response"]:good||(actd!=null&&actd>=3)?["warn","Partial / unclear response"]:["bad","No meaningful response"];
+    body=`<div class="zone"><h4>${esc(p.biologic.name)} since ${fmtDate(start)} (${months.toFixed(1)} months)</h4><table class="tbl"><thead><tr><th>Measure</th><th>Baseline</th><th>Latest</th></tr></thead>${rows.map(r=>`<tr><td>${r[0]}</td><td class="num">${esc(r[1])}</td><td class="num">${esc(r[2])}</td></tr>`).join("")}</table></div>
+    <div class="zone"><div class="result ${verdict[0]}"><div class="big">${verdict[1]}</div><p>${verdict[0]==="good"?"Reduce OCS first (adrenal assessment), then other add-ons, then ICS-LABA after 3–6 months; do not stop ICS. Continue biologic; review every 3–6 months.":verdict[0]==="bad"?"Stop and review basics, phenotype, consider switching class.":"Extend trial to 6–12 months; check adherence, technique and comorbidities."}</p></div></div>`; } }
+  if(type==="ocs"){ const oc=P.ocsSeries(p), cum=oc.length?oc[oc.length-1].cum:0;
+    body=`<div class="zone"><h4>OCS exposure</h4><table class="tbl"><tr><td>Courses in last 12 months</td><td class="num">${P.within12(p,"ocs")}</td></tr><tr><td>Current maintenance dose</td><td class="num">${esc(l.maintOcs||0)} mg/day</td></tr><tr><td>Estimated cumulative (recorded period)</td><td class="num">${cum.toFixed(2)} g</td></tr></table></div>
+    <div class="zone"><h4>Assessment</h4><p>${cum>=1?"High cumulative exposure (≥1 g).":cum>=0.5?"Increased cumulative exposure (0.5–1 g).":"Lower cumulative exposure (<0.5 g)."} ${+l.maintOcs>0?(L[1]==="good"?"Controlled: taper by 2.5–5 mg every 2–4 weeks to ~7.5 mg, then 1 mg steps; check morning cortisol near 5 mg/day before stopping.":"Not yet controlled: optimise inhaled therapy, assess biologic eligibility before tapering."):"Not on maintenance OCS."}</p></div>
+    <div class="zone"><h4>Monitoring</h4><ul><li>DEXA, calcium/vitamin D, consider bone protection</li><li>HbA1c, blood pressure, weight, lipids</li><li>Eye examination (cataract, glaucoma)</li><li>Adrenal: steroid emergency card, sick-day rules</li><li>Mood and sleep</li></ul></div>`; }
+  if(type==="step"){ body=`<div class="zone"><h4>Current status</h4>${latest}</div><div class="zone"><div class="result ${sa[0]}"><div class="big">${sa[0]==="bad"?"Step up / escalate":sa[0]==="warn"?"Correct basics first":sa[0]==="good"?"Step down / taper":"Continue"}</div><p>${esc(sa[1])}</p></div></div>`; }
+  if(type==="schedule"){ body=`<div class="zone"><h4>Personalised follow-up schedule</h4><table class="tbl"><thead><tr><th>What</th><th>When</th></tr></thead>${scheduleAdvice(p).map(r=>`<tr><td><b>${esc(r[1])}</b></td><td>${esc(r[0])}</td></tr>`).join("")}</table><p>Next review booked: <b>${fmtDate(l.next)}</b></p></div>`; }
+  return shell(`<div class="crumbs"><a href="#patients">Patients</a>›<a href="#p-${p.id}">${esc(p.code)}</a>›<span>Report</span></div>
+  <div class="seg noprint" style="margin-bottom:12px">${REPORTS.map(r=>`<a href="#r-${p.id}-${r[0]}" class="${r[0]===type?"on":""}">${esc(r[1])}</a>`).join("")}</div>
+  <div class="report-card" id="rep_main"><div class="pwm" aria-hidden="true">${Array(10).fill(`<span>${AUTHOR}</span>`).join("")}</div>
+   <div class="plan-head"><div><div class="eyebrow">Asthma clinic report · ${esc(R[1])}</div><h2>${esc(p.code)}</h2><span class="muted" style="font-size:.85rem">${p.age==="adult"?"Adult/adolescent":p.age==="child"?"Child 6–11":"Child ≤5"} · Track ${esc(p.track)} · Diagnosis ${p.dxConfirmed?"confirmed":"not yet confirmed"}</span></div><div class="muted" style="font-size:.85rem;text-align:right">Date ${fmtDate(today())}<br>Clinician: ${AUTHOR}</div></div>
+   ${body}
+   <div class="plan-foot">Prepared by ${AUTHOR} · Based on ${esc(edInfo(S.edId).label)} · Decision support only; clinical judgement applies.</div></div>
+  ${reportActions("rep_main")}`);
+};
+
 
 /* =====================================================================
    STUDY
@@ -1163,7 +1788,7 @@ async function fillDiff(){
   const box=$("#diffBox"); if(!box) return;
   const ids=CFG.editions.map(e=>e.id).sort(); const i=ids.indexOf(S.edId);
   if(i<1){ box.innerHTML=`<p>Only one edition is installed, so there is nothing to compare yet. When ${esc(String(+S.edId+1))} is added, this panel will list topics added, removed or changed and which data tables (doses, criteria, algorithms) differ.</p>`; return; }
-  try{ const A=await loadEdition(ids[i-1]); const d=diffEditions(A,S.E);
+  try{ const A=mergeConsultant(await loadEdition(ids[i-1])); const d=diffEditions(A,S.E);
     box.innerHTML=`<p class="muted">Comparing ${esc(ids[i-1])} → ${esc(S.edId)}</p><div class="grid g2">
     <div><b>Topics added (${d.added.length})</b><ul>${d.added.map(x=>`<li>${esc(x)}</li>`).join("")||"<li class='muted'>None</li>"}</ul></div>
     <div><b>Topics changed (${d.changed.length})</b><ul>${d.changed.map(x=>`<li>${esc(x)}</li>`).join("")||"<li class='muted'>None</li>"}</ul></div>
@@ -1178,13 +1803,15 @@ async function fillDiff(){
 async function render(){
   const r = location.hash.slice(1) || "home";
   const view = $("#view"); let html, after=null;
-  if(r==="home") html=V.home();
+  if(r==="home") html=V.dash();
   else if(r==="learn") html=V.learn();
   else if(r.startsWith("m-")) html=V.module(r.slice(2));
   else if(r.startsWith("t-")) html=V.topic(r.slice(2));
   else if(r==="tools") html=V.tools();
   else if(r.startsWith("tool-")) html=V.tool(r.slice(5));
   else if(r==="patients") html=V.patients();
+  else if(r.startsWith("patients-")) html=V.patients(r.slice(9));
+  else if(r.startsWith("r-")){ const m=r.match(/^r-([A-Za-z0-9]+)-([a-z]+)$/); html = m?V.report(m[1],m[2]):V.dash(); }
   else if(r==="pbackup") html=V.pbackup();
   else if(r.startsWith("p-")) html=V.patient(r.slice(2));
   else if(r==="study") html=V.study();
@@ -1194,7 +1821,7 @@ async function render(){
   else if(r.startsWith("study-case-")){ html=V.casePage(); after=()=>runCase(r.slice(11)); }
   else if(r==="updates"){ html=V.updates(); after=fillDiff; }
   else if(r==="search") html=V.search();
-  else html=V.home();
+  else html=V.dash();
   view.innerHTML = `<div class="view">${html}</div>`;
   nav(); mountWidgets(view); if(after) after();
   if(!r.startsWith("search")) window.scrollTo(0,0);
@@ -1213,9 +1840,11 @@ document.addEventListener("click", e=>{
     const ps=P.all(); const p={id:uid(), code, age:$("#np_age").value, track:$("#np_track").value, dxConfirmed:$("#np_dx").value==="1", notes:"", visits:[]}; ps.unshift(p); P.save(ps); location.hash="p-"+p.id; toast("Patient saved"); }
   else if(act==="visit"){ $("#visitForm").hidden=false; $("#v_date").focus(); }
   else if(act==="cancelvisit"){ $("#visitForm").hidden=true; }
-  else if(act==="savevisit"){ const ps=P.all(), p=ps.find(x=>x.id===r.slice(2)); const g=id=>$("#"+id).value;
-    p.visits.push({date:g("v_date")||today(), sc:[0,1,2,3].map(i=>$("#v_sc"+i).checked?1:0), exac:+g("v_exac")||0, ocs:+g("v_ocs")||0, fev1:g("v_fev1")===""?null:+g("v_fev1"), pef:g("v_pef")===""?null:+g("v_pef"), step:g("v_step"), tech:g("v_tech"), adh:g("v_adh"), plan:g("v_plan"), next:g("v_next")});
-    P.save(ps); render(); toast("Visit saved"); }
+  else if(act==="savevisit"){ const ps=P.all(), p=ps.find(x=>x.id===r.slice(2)); saveVisit2(p); P.save(ps); render(); toast("Visit saved"); }
+  else if(act==="edit"){ $("#editForm").hidden=false; }
+  else if(act==="canceledit"){ $("#editForm").hidden=true; }
+  else if(act==="saveedit"){ const ps=P.all(), p=ps.find(x=>x.id===r.slice(2)); const code=$("#pe_code").value.trim(); if(code) p.code=code; const bn=$("#pe_bio").value; p.biologic = bn?{name:bn,start:$("#pe_bios").value||today()}:null; p.ocsCourseMg=+$("#pe_ocsmg").value||200; p.dxConfirmed=$("#pe_dx").value==="1"; p.notes=$("#pe_notes").value; P.save(ps); render(); toast("Details saved"); }
+  else if(act==="noticeok"){ store.set("notice_ok",true); const n=$("#noticeBox"); if(n) n.remove(); }
   else if(act==="del"){ $("#delConfirm").hidden=false; }
   else if(act==="delno"){ $("#delConfirm").hidden=true; }
   else if(act==="delyes"){ P.save(P.all().filter(x=>x.id!==r.slice(2))); location.hash="patients"; toast("Patient deleted"); }
@@ -1238,7 +1867,7 @@ $("#q").addEventListener("input", ()=>{ clearTimeout(qT); qT=setTimeout(()=>{ if
 $("#q").addEventListener("keydown", e=>{ if(e.key==="Enter"){ location.hash="search"; render(); } });
 
 async function switchEdition(id){
-  try{ S.E = await loadEdition(id); S.edId=id; SEARCH_IDX=null; $("#edBadge").textContent=edInfo(id).label+(isArchive()?" · archive":""); render(); }
+  try{ S.E = mergeConsultant(await loadEdition(id)); S.edId=id; SEARCH_IDX=null; $("#edBadge").textContent=edInfo(id).label+(isArchive()?" · archive":""); render(); }
   catch(err){ toast(err.message); }
 }
 
@@ -1256,8 +1885,16 @@ function disclaimer(){
 
 window.addEventListener("hashchange", render);
 (async function boot(){
-  try{ S.E = await loadEdition(S.edId); $("#edBadge").textContent = edInfo(S.edId).label; render(); disclaimer(); }
+  try{ S.E = mergeConsultant(await loadEdition(S.edId)); $("#edBadge").textContent = edInfo(S.edId).label; render(); }
   catch(err){ $("#view").innerHTML=`<div class="callout bad"><b>Content could not be loaded.</b> ${esc(err.message)}. Check that the <span class="mono">content/</span> folder sits next to index.html.</div>`; }
 })();
 })();
 </script>
+
+<script>
+if ("serviceWorker" in navigator && location.protocol === "https:") {
+  window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
+}
+</script>
+</body>
+</html>

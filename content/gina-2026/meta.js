@@ -1,0 +1,32 @@
+GINA.register("2026", "meta", {
+  edition: "2026",
+  title: "Global Strategy for Asthma Management and Prevention",
+  released: "May 2026",
+  pageNote: "Page numbers refer to the printed page numbers of the GINA 2026 Strategy Report.",
+  modules: [
+    { id: "foundations", title: "Foundations", short: "Basics", color: "blue",
+      blurb: "Definition, phenotypes, goals, remission and what severity really means." },
+    { id: "diagnosis", title: "Diagnosis (≥6 years)", short: "Diagnosis", color: "teal",
+      blurb: "Flowchart, variable airflow criteria, biomarkers, differentials, patients already on ICS." },
+    { id: "assessment", title: "Assessment", short: "Assess", color: "violet",
+      blurb: "Symptom control, future risk, lung function, tools (ACT, ACQ, CAAT, Peds-AIRQ)." },
+    { id: "management", title: "Management: adults & adolescents", short: "Treat 12+", color: "orange",
+      blurb: "Track 1 and Track 2, Steps 1–5, AIR/MART doses, ICS doses, stepping up and down." },
+    { id: "children", title: "Management: children 6–11", short: "Treat 6–11", color: "pink",
+      blurb: "Initial treatment, Steps 1–5, MART dosing, step transitions, biologics." },
+    { id: "preschool", title: "Children 5 years and younger", short: "≤5 years", color: "green",
+      blurb: "Three-criterion diagnosis, control, Steps 1–4, low ICS doses, devices." },
+    { id: "exacerbations", title: "Exacerbations & acute asthma", short: "Acute", color: "red",
+      blurb: "Red flags, action plans, primary care and ED flowcharts, OCS stewardship, discharge." },
+    { id: "severe", title: "Difficult-to-treat & severe asthma", short: "Severe", color: "indigo",
+      blurb: "Decision tree stages 1–10, Type 2 phenotyping, biologic choice and review." },
+    { id: "special", title: "Multimorbidity & special populations", short: "Special", color: "amber",
+      blurb: "Obesity, rhinosinusitis, pregnancy, elderly, AERD, ABPA, surgery, LMIC and more." },
+    { id: "copd", title: "Asthma, COPD or both", short: "Asthma+COPD", color: "slate",
+      blurb: "Syndromic approach and safe initial treatment in adults with chronic symptoms." },
+    { id: "selfmgmt", title: "Self-management & inhalers", short: "Self-care", color: "cyan",
+      blurb: "Choose–check–correct–confirm, adherence, education, written action plans." },
+    { id: "prevention", title: "Prevention, vaccines & biomarkers", short: "Prevent", color: "lime",
+      blurb: "Primary prevention advice, vaccinations, Type 2 biomarker interpretation." }
+  ]
+});
